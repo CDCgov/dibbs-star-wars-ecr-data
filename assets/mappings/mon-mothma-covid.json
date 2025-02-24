@@ -1,0 +1,257 @@
+{
+  "base": {
+    "document": {
+      "eicr": {
+        "id": "e91bc1e8-2523-4047-a663-1e3e07812948",
+        "setId": "a2e1311c-e39f-48a2-8a2e-c482ab9abd8c",
+        "versionNumber": 1,
+        "title": "Initial Public Health Case Report",
+        "effectiveTime": "20250219001500-0400"
+      },
+      "rr": {
+        "id": "7f8d597f-18fc-4865-a97c-5e1977594f79",
+        "title": "Reportability Response",
+        "effectiveTime": "20250219003615-0400"
+      },
+      "shared": {
+        "confidentialityCode": {
+          "code": "N",
+          "displayName": "Normal"
+        },
+        "languageCode": "en-US"
+      }
+    },
+    "software": {
+      "manufacturerModelName": "EpicCore Galactic - Version 45.7",
+      "softwareName": "EpicCore Galactic - Version 45.7"
+    }
+  },
+  "components": {
+    "facility": {
+      "id": "1234567893",
+      "name": "Grand Republic Medical Facility Clinic",
+      "type": {
+        "code": "OF",
+        "displayName": "Outpatient Facility"
+      },
+      "contact": {
+        "address": {
+          "use": "WP",
+          "street": "500 Republica Medical Plaza, Suite 1000",
+          "city": "Senate District",
+          "state": "Galactic City",
+          "zip": "GC-500",
+          "county": "Administrative Core",
+          "country": "Coruscant"
+        },
+        "phone": {
+          "use": "WP",
+          "value": "555-777-0123"
+        },
+        "fax": {
+          "use": "WP",
+          "value": "555-777-0124"
+        }
+      }
+    },
+    "provider": {
+      "id": "1234567890",
+      "name": {
+        "prefix": "Dr",
+        "given": "Royce",
+        "family": "Hemlock",
+        "suffix": "MD"
+      },
+      "contact": {
+        "address": {
+          "use": "WP",
+          "street": "200 Corusca Street",
+          "city": "Senate District",
+          "state": "Galactic City",
+          "zip": "GC-500",
+          "county": "Administrative Core",
+          "country": "Coruscant"
+        },
+        "phone": {
+          "use": "WP",
+          "value": "555-555-4321"
+        },
+        "email": {
+          "use": "WP",
+          "value": "dr.hemlock@grmfc.gc.example.com"
+        }
+      }
+    },
+    "patient": {
+      "id": {
+        "mrn": "MRN-00884455",
+        "ssn": "000-65-4321"
+      },
+      "name": {
+        "use": "L",
+        "prefix": "Senator",
+        "given": "Mon",
+        "family": "Mothma"
+      },
+      "demographics": {
+        "gender": {
+          "code": "F",
+          "displayName": "Female"
+        },
+        "birthDate": "19750101",
+        "deceased": false,
+        "race": {
+          "code": "2106-3",
+          "displayName": "White"
+        },
+        "ethnicity": {
+          "code": "2186-5",
+          "displayName": "Not Hispanic or Latino"
+        },
+        "preferredLanguage": {
+          "code": "en",
+          "displayName": "English"
+        }
+      },
+      "contact": {
+        "address": {
+          "use": "H",
+          "street": "500 Republica, Suite 400",
+          "city": "Senate District",
+          "state": "Galactic City",
+          "zip": "GC-500",
+          "county": "Administrative Core",
+          "country": "Coruscant"
+        },
+        "phone": {
+          "use": "MC",
+          "value": "+1-555-555-9876"
+        },
+        "email": {
+          "use": "WP",
+          "value": "mon.mothma@senate.gr.example.com"
+        }
+      },
+      "guardian": {
+        "name": {
+          "use": null,
+          "prefix": null,
+          "given": null,
+          "family": null
+        },
+        "contact": {
+          "address": {
+            "use": null,
+            "street": null,
+            "city": null,
+            "state": null,
+            "zip": null,
+            "county": null,
+            "country": null
+          },
+          "phone": {
+            "use": null,
+            "value": null
+          },
+          "email": {
+            "use": null,
+            "value": null
+          }
+        },
+        "relationship": {
+          "code": null,
+          "displayName": null
+        }
+      }
+    }
+  },
+  "patterns": {
+    "lab_confirmed": {
+      "versions": {
+        "initial": {
+          "type": "initial_symptoms",
+          "documentIds": {
+            "eicr": {
+              "id": "e91bc1e8-2523-4047-a663-1e3e07812948",
+              "setId": "a2e1311c-e39f-48a2-8a2e-c482ab9abd8c",
+              "versionNumber": 1
+            },
+            "rr": {
+              "id": "7f8d597f-18fc-4865-a97c-5e1977594f79"
+            }
+          },
+          "timing": {
+            "encounterDate": "2025-02-20",
+            "encounterTime": "06:15:00",
+            "documentCreated": "2025-02-20T06:35:48Z",
+            "documentReceived": "2025-02-20T06:36:02Z",
+            "rrGenerated": "2025-02-20T06:36:15Z"
+          },
+          "trigger": {
+            "code": "840539006",
+            "displayName": "Disease caused by severe acute respiratory syndrome coronavirus 2 (disorder)"
+          }
+        },
+        "lab_order": {
+          "type": "lab_order",
+          "documentIds": {
+            "eicr": {
+              "id": "9408ddce-4dcb-416c-a153-82cce01839e2",
+              "setId": "a2e1311c-e39f-48a2-8a2e-c482ab9abd8c",
+              "versionNumber": 2
+            },
+            "rr": {
+              "id": "9f33931b-d204-4e2b-9f26-50f0dc59b5a0"
+            }
+          },
+          "timing": {
+            "encounterDate": "2025-02-20",
+            "orderPlaced": "2025-02-20T06:40:00Z",
+            "documentCreated": "2025-02-20T06:40:22Z",
+            "documentReceived": "2025-02-20T06:41:02Z",
+            "rrGenerated": "2025-02-20T06:41:15Z"
+          },
+          "order": {
+            "id": "9937012-1",
+            "test": {
+              "code": "94500-6",
+              "displayName": "SARS-CoV-2 (COVID-19) RNA [Presence] in Respiratory specimen by NAA with probe detection"
+            }
+          }
+        },
+        "lab_result": {
+          "type": "lab_result",
+          "documentIds": {
+            "eicr": {
+              "id": "10c13861-86a8-4a9a-aec6-b615921178df",
+              "setId": "a2e1311c-e39f-48a2-8a2e-c482ab9abd8c",
+              "versionNumber": 3
+            },
+            "rr": {
+              "id": "deb6d64f-a4ce-402d-ad4f-3d3d912ccdef"
+            }
+          },
+          "timing": {
+            "encounterDate": "2025-02-20",
+            "specimenCollected": "2025-02-20T06:42:00Z",
+            "resultReceived": "2025-02-20T06:45:10Z",
+            "documentCreated": "2025-02-20T06:45:22Z",
+            "documentReceived": "2025-02-20T06:46:02Z",
+            "rrGenerated": "2025-02-20T06:46:15Z"
+          },
+          "result": {
+            "id": "9937012-1-1",
+            "test": {
+              "code": "94500-6",
+              "displayName": "SARS-CoV-2 (COVID-19) RNA [Presence] in Respiratory specimen by NAA with probe detection"
+            },
+            "value": {
+              "code": "260373001",
+              "displayName": "Detected"
+            }
+          }
+        }
+      }
+    }
+  }
+}
