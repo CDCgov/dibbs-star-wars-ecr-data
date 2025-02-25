@@ -169,3 +169,6 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# for validation; this file will change everytime you run the script
+svrl-output.xml
