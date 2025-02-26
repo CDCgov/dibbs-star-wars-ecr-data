@@ -163,6 +163,30 @@
           "displayName": null
         }
       }
+    },
+    "author":{
+      "time": "20250215150045-0400",
+      "contact": {
+        "address": {
+          "use": "WP",
+          "street": "500 Republica Medical Plaza, Suite 1000",
+          "city": "Senate District",
+          "state": "Galactic City",
+          "zip": "GC-500",
+          "county": "Administrative Core",
+          "country": "Coruscant"
+        },
+      "phone": {
+        "use": "WP",
+        "value": "+1-888-000-9999"
+      },
+      "fax": {
+        "use": "WP",
+        "value": "+1-888-000-1111"
+      }
+      },
+      "manufacturerModelName": "EpicCore Galactic - Version 45.7",
+      "softwareName": "EpicCore Galactic - Version 45.7"
     }
   },
   "patterns": {

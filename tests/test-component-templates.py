@@ -29,3 +29,32 @@ def test_patient_template(jinja_env, patient_data, xml_nsmap, base_path):
         print("\nNormalized Expected XML:")
         print(normalized_expected)
         raise
+
+
+def test_author_template(jinja_env, patient_data, xml_nsmap, base_path):
+    """Test that our template generates the expected author XML structure."""
+    # load and render the template
+    template = jinja_env.get_template("components/author.xml.j2")
+    rendered_xml = template.render(
+        author=patient_data["components"]["author"], nsmap=xml_nsmap
+    )
+
+    # load and extract the expected xml
+    xml_path = base_path / "tests" / "assets" / "mon-mothma-covid-problem_eicr.xml"
+    tree = etree.parse(str(xml_path))
+    author = tree.find(".//{urn:hl7-org:v3}author")
+    expected_xml = etree.tostring(author, encoding="unicode")
+
+    # compare normalized versions
+    normalized_rendered = normalize_xml(rendered_xml)
+    normalized_expected = normalize_xml(expected_xml)
+
+    # for debugging, print both versions if they don't match
+    try:
+        assert normalized_rendered == normalized_expected
+    except AssertionError:
+        print("\nNormalized Generated XML:")
+        print(normalized_rendered)
+        print("\nNormalized Expected XML:")
+        print(normalized_expected)
+        raise
