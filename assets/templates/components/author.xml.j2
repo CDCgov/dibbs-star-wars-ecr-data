@@ -1,0 +1,26 @@
+{#- author template for eICR/RR documents -#}
+{% if author %}<author>
+    {% if author.time %}<time value="{{ author.time }}" />{% endif %}
+    <assignedAuthor>
+        <id root="2.16.840.1.113883.3.72.5.20" />
+        {% if author.contact.address %}<addr use="{% if author.contact.address.use %}{{ author.contact.address.use }}{% else %}WP{% endif %}">{% endif %}
+            {% if author.contact.address.street %}<streetAddressLine>{{ author.contact.address.street }}</streetAddressLine>{% endif %}
+            {% if author.contact.address.city %}<city>{{ author.contact.address.city }}</city>{% endif %}
+            {% if author.contact.address.state %}<state>{{ author.contact.address.state }}</state>{% endif %}
+            {% if author.contact.address.zip %}<postalCode>{{ author.contact.address.zip }}</postalCode>{% endif %}
+            {% if author.contact.address.county %}<county>{{ author.contact.address.county }}</county>
+            {% endif %}
+            {% if author.contact.address.country %}
+                <country>{{ author.contact.address.country }}</country>
+            {% endif %}
+        </addr>
+        {% if author.contact.phone.value %}
+            <telecom use="{{ author.contact.phone.use }}" value="tel:{{ author.contact.phone.value }}" />
+        {% endif %}
+        {% if author.contact.fax.value %}<telecom use="{{ author.contact.fax.use }}" value="fax:{{ author.contact.fax.value }}" />{% endif %}
+        <assignedAuthoringDevice>
+            {% if author.manufacturerModelName %}<manufacturerModelName>{{ author.manufacturerModelName }}</manufacturerModelName>{% endif %}
+            {% if author.softwareName %} <softwareName>{{ author.softwareName }}</softwareName>{% endif %}
+        </assignedAuthoringDevice>
+    </assignedAuthor>
+</author>{% endif %}
