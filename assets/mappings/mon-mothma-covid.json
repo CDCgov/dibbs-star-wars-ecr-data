@@ -46,11 +46,7 @@
         },
         "phone": {
           "use": "WP",
-          "value": "555-777-0123"
-        },
-        "fax": {
-          "use": "WP",
-          "value": "555-777-0124"
+          "value": "+1-888-000-9999"
         }
       }
     },
@@ -164,7 +160,7 @@
         }
       }
     },
-    "author":{
+    "author": {
       "time": "20250215150045-0400",
       "contact": {
         "address": {
@@ -176,14 +172,14 @@
           "county": "Administrative Core",
           "country": "Coruscant"
         },
-      "phone": {
-        "use": "WP",
-        "value": "+1-888-000-9999"
-      },
-      "fax": {
-        "use": "WP",
-        "value": "+1-888-000-1111"
-      }
+        "phone": {
+          "use": "WP",
+          "value": "+1-888-000-9999"
+        },
+        "fax": {
+          "use": "WP",
+          "value": "+1-888-000-1111"
+        }
       },
       "manufacturerModelName": "EpicCore Galactic - Version 45.7",
       "softwareName": "EpicCore Galactic - Version 45.7"
