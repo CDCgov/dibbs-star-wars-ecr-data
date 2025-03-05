@@ -1,0 +1,26 @@
+{#- custodian template for custodian in an eICR document -#}
+{%- macro format_address(addr) %}
+    <addr use="{{ addr.use }}">
+    {%- if addr.street %}<streetAddressLine>{{ addr.street }}</streetAddressLine>{%- endif %}
+        {%- if addr.city %}<city>{{ addr.city }}</city>{%- endif %}
+            {%- if addr.state %}<state>{{ addr.state }}</state>{%- endif %}
+                {%- if addr.zip %}<postalCode>{{ addr.zip }}</postalCode>{%- endif %}
+                    {%- if addr.county %}<county>{{ addr.county }}</county>{%- endif %}
+                        {%- if addr.country %}<country>{{ addr.country }}</country>{%- endif %}
+                            </addr>
+                        {%- endmacro %}
+                        {%- macro format_telecom(phone=None, fax=None) %}
+                            {%- if phone %}<telecom use="{{ phone.use }}" value="tel:{{ phone.value }}" />{%- endif %}
+                                {%- if fax %}<telecom use="{{ fax.use }}" value="fax:{{ fax.value }}" />{%- endif %}
+                                {%- endmacro %}
+                                <custodian xmlns="{{ nsmap[None] }}" xmlns:xsi="{{ nsmap['xsi'] }}">
+                                <assignedCustodian>
+                                <representedCustodianOrganization>
+                                {#- Custodian ID (NPI) -#}
+                                <id extension="{{ facility.id }}" root="2.16.840.1.113883.4.6" />
+                                <name>{{ facility.name }}</name>
+                                {%- if facility.contact %}{{ format_telecom(facility.contact.phone, facility.contact.fax) }}{%- endif %}
+                                    {%- if facility.contact.address %}{{ format_address(facility.contact.address) }}{%- endif %}
+                                        </representedCustodianOrganization>
+                                        </assignedCustodian>
+                                        </custodian>
