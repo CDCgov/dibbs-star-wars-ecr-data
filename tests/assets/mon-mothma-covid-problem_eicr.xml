@@ -114,7 +114,7 @@
         <streetAddressLine>500 Republica, Suite 400</streetAddressLine>
         <city>Senate District</city>
         <state>Galactic City</state>
-        <potalCode>GC-500</potalCode>
+        <postalCode>GC-500</postalCode>
         <county>Administrative Core</county>
         <country>Coruscant</country>
       </addr>
@@ -225,7 +225,7 @@
       <component>
         <section>
           <!-- [C-CDA R1.1] Encounters Section (entries optional) -->
-          <templateId root="2.16.840.1.113883.10.20.22.2.22" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.22" />Y
           <!-- [C-CDA R2.1] Encounters Section (entries optional) (V3) -->
           <templateId extension="2015-08-01"
             root="2.16.840.1.113883.10.20.22.2.22" />
