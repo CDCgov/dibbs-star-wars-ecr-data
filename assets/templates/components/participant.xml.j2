@@ -1,0 +1,21 @@
+{% if participant %}<participant typeCode="IND">
+    <time nullFlavor="UNK" />
+    <associatedEntity classCode="ECON">
+        <addr use="H">
+            {% if participant.contact.address.street %}<streetAddressLine>{{ participant.contact.address.street }}</streetAddressLine>{% endif %}
+            {% if participant.contact.address.city %}<city>{{ participant.contact.address.city }}</city>{% endif %}
+            {% if participant.contact.address.state %}<state>{{ participant.contact.address.state }}</state>{% endif %}
+            {% if participant.contact.address.zip %}<postalCode>{{ participant.contact.address.zip }}</postalCode>{% endif %}
+            {% if participant.contact.address.county %}<county>{{ participant.contact.address.county }}</county>{% endif %}
+            {% if participant.contact.address.country %}<country>{{ participant.contact.address.country }}</country>{% endif %}
+        </addr>
+        {% if participant.contact.phone.value %}<telecom value="tel:{{ participant.contact.phone.value }}" use="{{ participant.contact.phone.use }}" />{% endif %}
+        {% if participant.associatedPerson %}<associatedPerson>
+            <name use="L">
+            {% if participant.associatedPerson.name.prefix %}<prefix>{{ participant.associatedPerson.name.prefix }}</prefix>{% endif %}
+            {% if participant.associatedPerson.name.given %}<given>{{ participant.associatedPerson.name.given }}</given>{% endif %}
+                {% if participant.associatedPerson.name.family %} <family>{{ participant.associatedPerson.name.family }}</family>{% endif %}
+            </name>
+        </associatedPerson>{% endif %}
+    </associatedEntity>
+</participant>{% endif %}
