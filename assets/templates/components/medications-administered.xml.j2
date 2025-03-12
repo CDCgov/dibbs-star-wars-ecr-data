@@ -1,0 +1,13 @@
+{% if medicationsAdministered.text %}<component>
+    <section nullFlavor="NI">
+        <!-- [C-CDA R1.1] Medications Administered Section -->
+        <templateId root="2.16.840.1.113883.10.20.22.2.38" />
+        <!-- [C-CDA R2.0] Medications Administered Section (V2) -->
+        <templateId extension="2014-06-09"
+                    root="2.16.840.1.113883.10.20.22.2.38" />
+        <code code="29549-3" codeSystem="2.16.840.1.113883.6.1"
+              codeSystemName="LOINC" displayName="Medications Administered" />
+        <title>Medications Administered</title>
+        {% if medicationsAdministered.text %}<text>{{ medicationsAdministered.text }}</text>{% endif %}
+    </section>
+</component>{% endif %}
