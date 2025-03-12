@@ -183,6 +183,12 @@
       },
       "manufacturerModelName": "EpicCore Galactic - Version 45.7",
       "softwareName": "EpicCore Galactic - Version 45.7"
+    },
+    "historyOfPresentIllness": {
+      "text": "<paragraph>Since February 16, 2025 the patient has had difficulty\n              breathing and a fever; </paragraph>"
+    },
+    "medicationsAdministered": {
+      "text": "No medications administered"
     }
   },
   "patterns": {

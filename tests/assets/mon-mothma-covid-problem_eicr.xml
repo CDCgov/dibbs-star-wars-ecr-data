@@ -129,7 +129,7 @@
     </associatedEntity>
   </participant>
 
-  <!-- componentOf: contains the encompassingEncouter and the provider and facility infomation for
+  <!-- componentOf: contains the encompassingEncounter and the provider and facility information for
   the case -->
   <componentOf>
     <!-- encounter ID-->
@@ -217,9 +217,9 @@
     </encompassingEncounter>
   </componentOf>
 
-  <!-- first component holds the structredBody -->
+  <!-- first component holds the structuredBody -->
   <component>
-    <!-- structredBody contains all of the clinical sections of the eICR -->
+    <!-- structuredBody contains all clinical sections of the eICR -->
     <structuredBody>
       <!-- Encounters section -->
       <component>
