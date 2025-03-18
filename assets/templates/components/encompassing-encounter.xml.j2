@@ -1,0 +1,95 @@
+{% set facility = data.components.facility %}
+{% set provider = data.components.provider %}
+{% set patterns = data.patterns %}
+<componentOf>
+    <encompassingEncounter>
+        <id extension="9937012" root="2.16.840.1.113883.19" />
+        <code code="AMB" codeSystem="2.16.840.1.113883.5.4"
+              codeSystemName="HL7 ActEncounterCode" displayName="Ambulatory" />
+        {%- if patterns.lab_confirmed.versions.initial.timing.encounterDate %}<effectiveTime>
+            <low value="{{ patterns.lab_confirmed.versions.initial.timing.encounterDate|replace('-', '') }}" />
+            <high value="{{ patterns.lab_confirmed.versions.initial.timing.encounterDate|replace('-', '') }}" />
+        </effectiveTime>{%- endif %}
+        <responsibleParty>
+            <assignedEntity>
+                <!-- Provider ID (NPI) -->
+                <id extension="{{ provider.id }}" root="2.16.840.1.113883.4.6" />
+                {%- if provider.contact.address.street %}
+                <addr use="H">
+                    {%- if provider.contact.address.street %} <streetAddressLine>{{ provider.contact.address.street }}</streetAddressLine>{%- endif %}
+                    {%- if provider.contact.address.city %} <city>{{ provider.contact.address.city }}</city>{%- endif %}
+                    {%- if provider.contact.address.state %} <state>{{ provider.contact.address.state }}</state>{%- endif %}
+                    {%- if provider.contact.address.zip %} <postalCode>{{ provider.contact.address.zip }}</postalCode>{%- endif %}
+                    {%- if provider.contact.address.county %} <county>{{ provider.contact.address.county }}</county>{%- endif %}
+                    {%- if provider.contact.address.country %} <country>{{ provider.contact.address.country }}</country>{%- endif %}
+                </addr>
+                {%- endif %}
+                {%- if provider.contact.phone.value %}<telecom use="WP" value="tel:{{ provider.contact.phone.value }}" />{%- endif %}
+                {%- if provider.contact.fax.value %}<telecom use="WP" value="fax:{{ provider.contact.fax.value }}" />{%- endif %}
+                {%- if provider.contact.email.value %}<telecom use="WP" value="mailto:{{ provider.contact.email.value }}" />{%- endif %}
+                <assignedPerson>
+                    {%- if provider.name %}<name>
+                        {%- if provider.name.prefix %}<prefix>{{ provider.name.prefix }}</prefix>{%- endif %}
+                        {%- if provider.name.given %}<given>{{ provider.name.given }}</given>{%- endif %}
+                        {%- if provider.name.family %}<family>{{ provider.name.family }}</family>{%- endif %}
+                        {%- if provider.name.suffix %}<suffix>{{ provider.name.suffix }}</suffix>{%- endif %}
+                    </name>{%- endif %}
+                </assignedPerson>
+                <representedOrganization>
+                    <!-- Represented Organization-->
+                    <id extension="{{ facility.id }}" root="2.16.840.1.113883.4.6" />
+                    <!-- Provider Facility/Office Name-->
+                    {%- if facility.name %}<name>{{ facility.name }}</name>{%- endif %}
+                    {%- if facility.contact.address %}
+                    <addr use="{{ facility.contact.address.use }}">
+                        {%- if facility.contact.address.street %}<streetAddressLine>{{ facility.contact.address.street }}</streetAddressLine>{%- endif %}
+                        {%- if facility.contact.address.city %}<city>{{ facility.contact.address.city }}</city>{%- endif %}
+                        {%- if facility.contact.address.state %}<state>{{ facility.contact.address.state }}</state>{%- endif %}
+                        {%- if facility.contact.address.state %}<postalCode>{{ facility.contact.address.zip }}</postalCode>{%- endif %}
+                        {%- if facility.contact.address.state %}<county>{{ facility.contact.address.county }}</county>{%- endif %}
+                        {%- if facility.contact.address.state %}<country>{{ facility.contact.address.country }}</country>{%- endif %}
+                    </addr>
+                    {%- endif %}
+                </representedOrganization>
+            </assignedEntity>
+        </responsibleParty>
+        {%- if facility %}
+        <location>
+            <healthCareFacility>
+                <!-- Facility ID (NPI) -->
+                <id extension="1234567890" root="2.16.840.1.113883.4.6" />
+                <code code="{{ facility.type.code }}" codeSystem="2.16.840.1.113883.5.111"
+                      codeSystemName="HL7RoleCode" displayName="{{ facility.type.displayName }}" />
+                <location>
+                    {%- if facility.contact.address %}
+                    <addr use="{{ facility.contact.address.use }}">
+                        {%- if facility.contact.address.street %}<streetAddressLine>{{ facility.contact.address.street }}</streetAddressLine>{%- endif %}
+                        {%- if facility.contact.address.city %}<city>{{ facility.contact.address.city }}</city>{%- endif %}
+                        {%- if facility.contact.address.state %}<state>{{ facility.contact.address.state }}</state>{%- endif %}
+                        {%- if facility.contact.address.state %}<postalCode>{{ facility.contact.address.zip }}</postalCode>{%- endif %}
+                        {%- if facility.contact.address.state %}<county>{{ facility.contact.address.county }}</county>{%- endif %}
+                        {%- if facility.contact.address.state %}<country>{{ facility.contact.address.country }}</country>{%- endif %}
+                    </addr>
+                    {%- endif %}
+                </location>
+                <serviceProviderOrganization>
+                    <!-- Provider Facility/Office Name-->
+                    {%- if facility.name %}<name>{{ facility.name }}</name>{%- endif %}
+                    {%- if facility.contact.phone.value %}<telecom use="WP" value="tel:{{ facility.contact.phone.value }}" />{%- endif %}
+                    {%- if facility.contact.fax.value %}<telecom use="WP" value="fax:{{ facility.contact.fax.value }}" />{%- endif %}
+                    {%- if facility.contact.address %}
+                    <addr use="{{ facility.contact.address.use }}">
+                        {%- if facility.contact.address.street %}<streetAddressLine>{{ facility.contact.address.street }}</streetAddressLine>{%- endif %}
+                        {%- if facility.contact.address.state %}<city>{{ facility.contact.address.city }}</city>{%- endif %}
+                        {%- if facility.contact.address.state %}<state>{{ facility.contact.address.state }}</state>{%- endif %}
+                        {%- if facility.contact.address.state %}<postalCode>{{ facility.contact.address.zip }}</postalCode>{%- endif %}
+                        {%- if facility.contact.address.state %}<county>{{ facility.contact.address.county }}</county>{%- endif %}
+                        {%- if facility.contact.address.state %}<country>{{ facility.contact.address.country }}</country>{%- endif %}
+                    </addr>
+                    {%- endif %}
+                </serviceProviderOrganization>
+            </healthCareFacility>
+        </location>
+        {%- endif %}
+    </encompassingEncounter>
+</componentOf>

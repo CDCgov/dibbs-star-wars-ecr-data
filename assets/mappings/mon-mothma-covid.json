@@ -47,6 +47,10 @@
         "phone": {
           "use": "WP",
           "value": "+1-888-000-9999"
+        },
+        "fax": {
+          "use": "WP",
+          "value": "+1-888-000-1111"
         }
       }
     },
@@ -75,6 +79,10 @@
         "email": {
           "use": "WP",
           "value": "dr.hemlock@grmfc.gc.example.com"
+        },
+        "fax": {
+          "use": "WP",
+          "value": "+1-555-777-0987"
         }
       }
     },
