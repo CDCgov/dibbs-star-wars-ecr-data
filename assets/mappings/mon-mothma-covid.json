@@ -183,6 +183,30 @@
       },
       "manufacturerModelName": "EpicCore Galactic - Version 45.7",
       "softwareName": "EpicCore Galactic - Version 45.7"
+    },
+    "participant":{
+      "contact": {
+        "address": {
+          "use": "WP",
+          "street": "500 Republica, Suite 400",
+          "city": "Senate District",
+          "state": "Galactic City",
+          "zip": "GC-500",
+          "county": "Administrative Core",
+          "country": "Coruscant"
+        },
+        "phone": {
+          "use": "MC",
+          "value": "+1-555-555-9877"
+        }
+      },
+      "associatedPerson": {
+        "name": {
+          "prefix": "Mr",
+          "given": "Perrin",
+          "family": "Fertha"
+        }
+      }
     }
   },
   "patterns": {
