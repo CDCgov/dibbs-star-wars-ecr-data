@@ -917,7 +917,7 @@
               <!-- [C-CDA R2.1] Result Organizer (V3) -->
               <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.1" />
               <id root="3f4b84f1-d3f6-4731-8e61-7c63d8f39a70" />
-              <code code="95422-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
+              <code code="34487-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
                 displayName="Influenza virus A RNA [Presence] in Respiratory specimen by NAA with probe detection" />
               <statusCode code="completed" />
               <effectiveTime>
@@ -933,7 +933,7 @@
                   <!-- [eICR R2 STU1.1] Initial Case Report Trigger Code Result Observation -->
                   <templateId extension="2016-12-01" root="2.16.840.1.113883.10.20.15.2.3.2" />
                   <id root="6c53c5ff-42a9-4f3c-a2c0-d412f019c0de" />
-                  <code code="95422-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
+                  <code code="34487-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
                     displayName="Influenza virus A RNA [Presence] in Respiratory specimen by NAA with probe detection"
                     sdtc:valueSet="2.16.840.1.114222.4.11.7508" sdtc:valueSetVersion="20250221"
                     xsi:type="CD" />
