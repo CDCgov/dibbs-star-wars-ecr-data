@@ -1,0 +1,40 @@
+<ClinicalDocument xmlns="{{ nsmap[None] }}" xmlns:cda="{{ nsmap[None] }}" xmlns:sdtc="{{ nsmap['sdtc'] }}"
+  xmlns:voc="{{ nsmap['voc'] }}"
+  xmlns:xsi="{{ nsmap['xsi'] }}"
+  xsi:schemaLocation="{{ nsmap['schema_location'] }}">
+  <realmCode code="US" />
+  <!-- [C-CDA R1.1] US Realm Header-->
+  <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3" />
+  <!-- [C-CDA R2.1] US Realm Header (V3) -->
+  <templateId root="2.16.840.1.113883.10.20.22.1.1" />
+  <!-- [eICR R2 STU1.1] Initial Public Health Case Report Document (eICR) (V2) -->
+  <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.1.1" />
+  <templateId extension="2016-12-01" root="2.16.840.1.113883.10.20.15.2" />
+  <!-- Globally unique document ID (extension) is scoped by vendor/software-->
+  <id root="{{ uuid() }}" />
+  <!-- Document Code-->
+  <code code="55751-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
+  displayName="Public Health Case Report" />
+  <title>Initial Public Health Case Report</title>
+  <effectiveTime value="{{ timestamp() }}" />
+  <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="Normal" />
+  <languageCode code="en-US" />
+  <setId extension="8d86218e-0fea-11eb-8216-a80388425cfb"
+  root="1.2.840.114350.1.13.380.3.7.1.1" />
+  <versionNumber value="3" />
+
+  <!-- recordTarget: The patient -->
+  {%- include 'components/patient.xml.j2' %}
+
+  <!-- Author/authenticator may be software or may be a provider such as "infection control
+  professional"-->
+  {% include 'components/author.xml.j2' %}
+
+  <!-- Custodian: organization or entity that is responsible for maintaining and safeguarding the
+  document -->
+  {% include 'components/custodian.xml.j2' %}
+
+  <!-- componentOf: contains the encompassingEncouter and the provider and facility information for
+  the case. -->
+
+</ClinicalDocument>

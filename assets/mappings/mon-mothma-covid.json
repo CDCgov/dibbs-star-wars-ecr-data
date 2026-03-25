@@ -26,6 +26,40 @@
       "softwareName": "EpicCore Galactic - Version 45.7"
     }
   },
+  "addresses":{
+    "person": {
+      "use": "WP",
+      "street": "200 Corusca Street",
+      "city": "Senate District",
+      "state": "Galactic City",
+      "zip": "GC-500",
+      "county": "Administrative Core",
+      "country": "Coruscant"
+    },
+    "organization": {
+      "use": "WP",
+      "street": "500 Republica Medical Plaza, Suite 1000",
+      "city": "Senate District",
+      "state": "Galactic City",
+      "zip": "GC-500",
+      "county": "Administrative Core",
+      "country": "Coruscant"
+    }
+  },
+  "telecom": {
+    "phone": {
+      "use": "WP",
+      "value": "+1-888-000-9999"
+    },
+    "fax": {
+      "use": "WP",
+      "value": "+1-555-777-0582"
+    },
+    "email": {
+      "use": "WP",
+      "value": "an.email@grmfc.gc.example.com"
+    }
+  },
   "components": {
     "facility": {
       "id": "1234567893",
@@ -33,21 +67,6 @@
       "type": {
         "code": "OF",
         "displayName": "Outpatient Facility"
-      },
-      "contact": {
-        "address": {
-          "use": "WP",
-          "street": "500 Republica Medical Plaza, Suite 1000",
-          "city": "Senate District",
-          "state": "Galactic City",
-          "zip": "GC-500",
-          "county": "Administrative Core",
-          "country": "Coruscant"
-        },
-        "phone": {
-          "use": "WP",
-          "value": "+1-888-000-9999"
-        }
       }
     },
     "provider": {
@@ -57,25 +76,6 @@
         "given": "Royce",
         "family": "Hemlock",
         "suffix": "MD"
-      },
-      "contact": {
-        "address": {
-          "use": "WP",
-          "street": "200 Corusca Street",
-          "city": "Senate District",
-          "state": "Galactic City",
-          "zip": "GC-500",
-          "county": "Administrative Core",
-          "country": "Coruscant"
-        },
-        "phone": {
-          "use": "WP",
-          "value": "555-555-4321"
-        },
-        "email": {
-          "use": "WP",
-          "value": "dr.hemlock@grmfc.gc.example.com"
-        }
       }
     },
     "patient": {
@@ -109,50 +109,12 @@
           "displayName": "English"
         }
       },
-      "contact": {
-        "address": {
-          "use": "H",
-          "street": "500 Republica, Suite 400",
-          "city": "Senate District",
-          "state": "Galactic City",
-          "zip": "GC-500",
-          "county": "Administrative Core",
-          "country": "Coruscant"
-        },
-        "phone": {
-          "use": "MC",
-          "value": "+1-555-555-9876"
-        },
-        "email": {
-          "use": "WP",
-          "value": "mon.mothma@senate.gr.example.com"
-        }
-      },
       "guardian": {
         "name": {
           "use": null,
           "prefix": null,
           "given": null,
           "family": null
-        },
-        "contact": {
-          "address": {
-            "use": null,
-            "street": null,
-            "city": null,
-            "state": null,
-            "zip": null,
-            "county": null,
-            "country": null
-          },
-          "phone": {
-            "use": null,
-            "value": null
-          },
-          "email": {
-            "use": null,
-            "value": null
-          }
         },
         "relationship": {
           "code": null,
@@ -162,44 +124,16 @@
     },
     "author": {
       "time": "20250215150045-0400",
-      "contact": {
-        "address": {
-          "use": "WP",
-          "street": "500 Republica Medical Plaza, Suite 1000",
-          "city": "Senate District",
-          "state": "Galactic City",
-          "zip": "GC-500",
-          "county": "Administrative Core",
-          "country": "Coruscant"
-        },
-        "phone": {
-          "use": "WP",
-          "value": "+1-888-000-9999"
-        },
-        "fax": {
-          "use": "WP",
-          "value": "+1-888-000-1111"
-        }
+      "organization": {
+        "name": "Grand Republic Medical Facility Clinic"
       },
       "manufacturerModelName": "EpicCore Galactic - Version 45.7",
       "softwareName": "EpicCore Galactic - Version 45.7"
     },
+    "custodian": {
+      "name": "Grand Republic Medical Facility Clinic"
+    },
     "participant":{
-      "contact": {
-        "address": {
-          "use": "WP",
-          "street": "500 Republica, Suite 400",
-          "city": "Senate District",
-          "state": "Galactic City",
-          "zip": "GC-500",
-          "county": "Administrative Core",
-          "country": "Coruscant"
-        },
-        "phone": {
-          "use": "MC",
-          "value": "+1-555-555-9877"
-        }
-      },
       "associatedPerson": {
         "name": {
           "prefix": "Mr",
