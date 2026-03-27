@@ -1,54 +1,46 @@
 {#- patient template for eICR/RR documents -#}
-{% from "components/macros.xml.j2" import format_address, format_telecom %}
+{% from "components/macros.xml.j2" import format_address, format_telecom, format_name %}
   <recordTarget xmlns="{{ nsmap[None] }}" xmlns:sdtc="{{ nsmap['sdtc'] }}" xmlns:xsi="{{ nsmap['xsi'] }}" xmlns:voc="{{ nsmap['voc'] }}">
     <patientRole>
       {#- patient identifiers #}
-      {% if components.patient.id.mrn %}<id root="2.16.840.1.113883.19.5" extension="{{ components.patient.id.mrn }}" />{% endif %}
-      {% if components.patient.id.ssn %}<id root="2.16.840.1.113883.4.1" extension="{{ components.patient.id.ssn }}" />{% endif %}
+      {% if patient.id.mrn %}<id root="2.16.840.1.113883.19.5" extension="{{ patient.id.mrn }}" />{% endif %}
+      {% if patient.id.ssn %}<id root="2.16.840.1.113883.4.1" extension="{{ patient.id.ssn }}" />{% endif %}
       {#- patient address -#}
       {{ format_address(addresses.person) | indent(6, True) }}
       {#- patient contact information -#}
       {{ format_telecom(telecom) | indent(6, True) }}
       <patient>
         {#- patient name -#}
-        {%- if components.patient.name %}
-        <name use="{{ components.patient.name.use }}">
-            {% if components.patient.name.prefix %}<prefix>{{ components.patient.name.prefix }}</prefix>{% endif %}
-            <given>{{ components.patient.name.given }}</given>
-            <family>{{ components.patient.name.family }}</family>
-        </name>
+        {%- if patient.name %}
+        {{- format_name(patient.name) | indent(8, True) }}
         {% endif %}
         {#- demographics -#}
-        <administrativeGenderCode code="{{ components.patient.demographics.gender.code }}" codeSystem="2.16.840.1.113883.5.1" displayName="{{ components.patient.demographics.gender.displayName }}" />
-        <birthTime value="{{ components.patient.demographics.birthDate }}" />
-        {% if components.patient.demographics.deceased is defined -%}
-        <sdtc:deceasedInd value="{{ components.patient.demographics.deceased|lower }}" />
+        <administrativeGenderCode code="{{ patient.demographics.gender.code }}" codeSystem="2.16.840.1.113883.5.1" displayName="{{ patient.demographics.gender.displayName }}" />
+        <birthTime value="{{ patient.demographics.birthDate }}" />
+        {% if patient.demographics.deceased is defined -%}
+        <sdtc:deceasedInd value="{{ patient.demographics.deceased|lower }}" />
         {%- endif %}
-        <raceCode code="{{ components.patient.demographics.race.code }}" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race &amp; Ethnicity - CDC" displayName="{{ components.patient.demographics.race.displayName }}" />
-        <ethnicGroupCode code="{{ components.patient.demographics.ethnicity.code }}" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race &amp; Ethnicity - CDC" displayName="{{ components.patient.demographics.ethnicity.displayName }}" />
+        <raceCode code="{{ patient.demographics.race.code }}" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race &amp; Ethnicity - CDC" displayName="{{ patient.demographics.race.displayName }}" />
+        <ethnicGroupCode code="{{ patient.demographics.ethnicity.code }}" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race &amp; Ethnicity - CDC" displayName="{{ patient.demographics.ethnicity.displayName }}" />
         {#- language -#}
-        {% if components.patient.demographics.preferredLanguage %}
+        {% if patient.demographics.preferredLanguage %}
         <languageCommunication>
-            <languageCode code="{{ components.patient.demographics.preferredLanguage.code }}" />
+            <languageCode code="{{ patient.demographics.preferredLanguage.code }}" />
             <preferenceInd value="true" />
         </languageCommunication>
         {%- endif %}
       </patient>
       {#- guardian information (if exists and not null) - TODO: test this section #}
-      {%- if components.patient.guardian and components.patient.guardian.name.given %}
+      {%- if patient.guardian and patient.guardian.name.given %}
       <guardian>
         <guardianPerson>
-          <name use="{{ components.patient.guardian.name.use }}">
-          {%- if components.patient.guardian.name.prefix %}<prefix>{{ components.patient.guardian.name.prefix }}</prefix>{%- endif %}
-          <given>{{ components.patient.guardian.name.given }}</given>
-          <family>{{ components.patient.guardian.name.family }}</family>
-          </name>
+          {{ format_name(patient.guardian.name) | indent(12, True) }}
         </guardianPerson>
           {{ format_address(addresses.person) }}
           {{ format_telecom(telecom) }}
-          {%- if components.patient.guardian.relationship %}
+          {%- if patient.guardian.relationship %}
           <guardianRole>
-          <code code="{{ components.patient.guardian.relationship.code }}" displayName="{{ components.patient.guardian.relationship.displayName }}" />
+          <code code="{{ patient.guardian.relationship.code }}" displayName="{{ patient.guardian.relationship.displayName }}" />
         </guardianRole>
         {%- endif %}
       </guardian>

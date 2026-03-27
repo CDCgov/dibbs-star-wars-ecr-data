@@ -1,0 +1,37 @@
+{%- from "activities/medication-activity.xml.j2" import render_medication_activity %}
+        <section>
+          <!-- [C-CDA R1.1] Medications Administered Section -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.38" />
+          <!-- [C-CDA R2.0] Medications Administered Section (V2) -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.38" extension="2014-06-09" />
+          <code code="29549-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
+            displayName="Medications Administered" />
+          <title>Medications Administered</title>
+          <text>
+            <table>
+              <thead>
+                <tr>
+                  <th>Medication</th>
+                  <th>Dose</th>
+                  <th>Duration</th>
+                  <th>Route</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for medication_activity in sections.medications_administered -%}
+                <tr ID="id_{{ loop.index }}_ref">
+                  <td>{{ medication_activity.manufacturedMaterial.displayName }}</td>
+                  <td>{{ medication_activity.doseQuantity.value }} {{ medication_activity.doseQuantity.unit }}</td>
+                  <td>NOV 7, 2020 11:59</td>
+                  <td>{{ medication_activity.route.displayName }}</td>
+                </tr>
+                {%- endfor %}
+              </tbody>
+            </table>
+          </text>
+          {%- for medication_activity in sections.medications_administered -%}
+          <entry typeCode="DRIV">
+          {{ render_medication_activity(medication_activity, codeSystems) | indent(12, True) }}
+          </entry>
+          {%- endfor %}
+        </section>

@@ -1,0 +1,136 @@
+
+        <section>
+          <!-- [C-CDA 1.1] Social History Section-->
+          <templateId root="2.16.840.1.113883.10.20.22.2.17" />
+          <!-- [C-CDA 2.1] Social History Section (V3) -->
+          <templateId extension="2015-08-01"
+            root="2.16.840.1.113883.10.20.22.2.17" />
+          <code code="29762-2" codeSystem="2.16.840.1.113883.6.1"
+            codeSystemName="LOINC" displayName="Social History" />
+          <title>Social History</title>
+          <text>
+            <table>
+              <thead>
+                <tr>
+                  <th>Birth Sex</th>
+                  <th>Value</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Sex Assigned At Birth</td>
+                  <td>{{ sections.social_history.birth_sex.displayName }}</td>
+                  <td>{{ sections.social_history.birth_sex.dateStr }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <table>
+              <thead>
+                <tr>
+                  <th>Social History Observation Type</th>
+                  <th>Value</th>
+                  <th>Dates(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Occupation / Employment details</td>
+                  <td>{{ sections.social_history.occupation.details }}</td>
+                  <td />
+                </tr>
+                <tr>
+                  <td>Pregnancy Status</td>
+                  <td>{{ sections.social_history.pregnancy_status.displayName }}</td>
+                  <td />
+                </tr>
+              </tbody>
+            </table>
+            <table>
+              <thead>
+                <tr>
+                  <th>Travel History: Date(s)</th>
+                  <th>Notes</th>
+                  <th>Location</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ sections.social_history.travel_history.datesStr }}</td>
+                  <td>{{ sections.social_history.travel_history.text }}</td>
+                  <td />
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry typeCode="DRIV">
+            <observation classCode="OBS" moodCode="EVN">
+              <!-- [C-CDA R2.1 Companion Guide] Birth Sex Observation -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.200" />
+              <templateId extension="2016-06-01"
+                root="2.16.840.1.113883.10.20.22.4.200" />
+              <code code="76689-9" codeSystem="2.16.840.1.113883.6.1"
+                codeSystemName="LOINC"
+                displayName="Sex Assigned At Birth" />
+              <statusCode code="completed" />
+              <!-- effectiveTime if present should match birthTime -->
+              <effectiveTime value="{{ sections.social_history.birth_sex.dateValue }}" />
+              <value code="{{ sections.social_history.birth_sex.code }}" codeSystem="2.16.840.1.113883.5.1"
+                codeSystemName="AdministrativeGender"
+                displayName="{{ sections.social_history.birth_sex.displayName }}" xsi:type="CD" />
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.38" />
+              <templateId extension="2015-08-01"
+                root="2.16.840.1.113883.10.20.22.4.38" />
+              <id root="db524287-4744-4ff8-a496-d775755a1ef2" />
+              <code code="11295-3" codeSystem="2.16.840.1.113883.6.1"
+                displayName="Occupation" />
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20250216" />
+              </effectiveTime>
+              <value code="{{ sections.social_history.occupation.code }}"
+                codeSystem="2.16.840.1.113883.6.243"
+                displayName="{{ sections.social_history.occupation.displayName }}" />
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.269" />
+              <id root="b0784a8c-4c9f-4e67-8983-3d5c6d945807" />
+              <code code="82810-3"
+                codeSystem="2.16.840.1.113883.6.1"
+                codeSystemName="LOINC"
+                displayName="Pregnancy status" />
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20250216" />
+              </effectiveTime>
+              <value xsi:type="CD"
+                code="{{ sections.social_history.pregnancy_status.code }}"
+                codeSystem="{{ codeSystems[sections.social_history.pregnancy_status.codeSystemName|trim] }}"
+                codeSystemName="{{ sections.social_history.pregnancy_status.codeSystemName }}"
+                displayName="{{ sections.social_history.pregnancy_status.displayName }}" />
+            </observation>
+          </entry>
+          {#- TODO: Use a for loop and array in the data to fill many travel histories (in text above too) - use uuid() for the id -#}
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <!-- [eICR R2 STU1.1] Travel History -->
+              <templateId root="2.16.840.1.113883.10.20.15.2.3.1" />
+              <templateId extension="2016-12-01" root="2.16.840.1.113883.10.20.15.2.3.1" />
+              <id root="79565142-eae0-4213-a3b3-b73cdf474682" />
+              <code code="420008001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT"
+                displayName="Travel" />
+              <text>{{ sections.social_history.travel_history.text }}</text>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="{{ sections.social_history.travel_history.start }}" />
+                <high value="{{ sections.social_history.travel_history.end }}" />
+              </effectiveTime>
+            </act>
+          </entry>
+        </section>

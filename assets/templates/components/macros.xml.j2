@@ -20,3 +20,16 @@
 <telecom use="{{ telecom.fax.use }}" value="fax:{{ telecom.fax.value }}" />
 {%- endif -%}
 {%- endmacro -%}
+
+{% macro format_name(name) %}
+{% if name.use -%}
+<name use="{{ name.use }}">
+{%- else -%}
+<name>
+{%- endif %}
+  {% if name.prefix %}<prefix>{{ name.prefix }}</prefix>{%- endif %}
+  <given>{{ name.given }}</given>
+  <family>{{ name.family }}</family>
+  {%- if name.suffix %}<suffix>{{ name.suffix }}</suffix>{% endif %}
+</name>
+{%- endmacro %}

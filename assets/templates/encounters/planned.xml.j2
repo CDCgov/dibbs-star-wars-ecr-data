@@ -1,0 +1,19 @@
+{% macro render_planned_encounter(encounter, codeSystems) %}
+<encounter classCode="ENC" moodCode="INT">
+  <!-- [C-CDA R1.1] Plan of Care Activity Encounter -->
+  <templateId root="2.16.840.1.113883.10.20.22.4.40" />
+  <!-- [C-CDA R2.1] Planned Encounter (V2) -->
+  <templateId root="2.16.840.1.113883.10.20.22.4.40" extension="2014-06-09" />
+  <id root="{{ uuid() }}" />
+  <code code="{{ encounter.code }}" codeSystem="{{ codeSystems[encounter.codeSystemName|trim] }}"
+    codeSystemName="{{ encounter.codeSystemName }}" displayName="{{ encounter.displayName }}" />
+  <statusCode code="active" />  <!-- Adding required statusCode -->
+  <effectiveTime value="20250224" />
+  <participant typeCode="LOC">
+    <participantRole classCode="SDLOC">
+      <code code="{{ encounter.participantRole.code }}" codeSystem="2.16.840.1.113883.1.11.20275"
+        codeSystemName="HealthcareServiceLocation" displayName="{{ encounter.participantRole.displayName }}" />
+    </participantRole>
+  </participant>
+</encounter>
+{%- endmacro %}

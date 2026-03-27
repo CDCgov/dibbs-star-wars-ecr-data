@@ -1,29 +1,24 @@
 {#- author template for eICR/RR documents -#}
-{%- from "components/macros.xml.j2" import format_address, format_telecom -%}
+{%- from "components/macros.xml.j2" import format_address, format_telecom, format_name -%}
   <author>
-    {% if components.author.time %}<time value="{{ components.author.time }}" />{% endif %}
+    {% if author.time %}<time value="{{ author.time }}" />{% endif %}
     <assignedAuthor>
       <id extension="1234567890" root="2.16.840.1.113883.4.6" />
       {{- format_address(addresses.person) | indent(6, True) -}}
       {{- format_telecom(telecom) | indent(6, True) }}
       <assignedAuthoringDevice>
-        {% if components.author.manufacturerModelName %}<manufacturerModelName>{{ components.author.manufacturerModelName }}</manufacturerModelName>{% endif %}
-        {% if components.author.softwareName %}<softwareName>{{ components.author.softwareName }}</softwareName>{% endif %}
+        {% if author.manufacturerModelName %}<manufacturerModelName>{{ author.manufacturerModelName }}</manufacturerModelName>{% endif %}
+        {% if author.softwareName %}<softwareName>{{ author.softwareName }}</softwareName>{% endif %}
       </assignedAuthoringDevice>
-      {% if components.author.assignedPerson %}
+      {% if author.assignedPerson %}
       <assignedPerson>
-        <name>
-          {% if components.author.assignedPerson.prefix %}<prefix>{{ components.author.assignedPerson.prefix }}</prefix>{% endif %}
-          <given>{{ components.author.assignedPerson.given }}</given>
-          <family>{{ components.author.assignedPerson.family }}</family>
-          {% if components.author.assignedPerson.suffix %}<suffix>{{ components.author.assignedPerson.suffix }}</suffix>{% endif %}
-        </name>
+        {{- format_name(author.assignedPerson) | indent(12, True) }}
       </assignedPerson>
       {% endif -%}
       <representedOrganization>
         <!-- NPI -->
         <id extension="1234567893" root="2.16.840.1.113883.4.6" />
-        <name>{{ components.author.organization.name }}</name>
+        <name>{{ author.organization.name }}</name>
         {{- format_address(addresses.organization) | indent(8, True) -}}
         {{- format_telecom(telecom) | indent(8, True) }}
       </representedOrganization>

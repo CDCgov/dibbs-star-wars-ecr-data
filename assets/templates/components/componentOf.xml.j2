@@ -1,5 +1,5 @@
-{# TODO - THIS! #}
-<componentOf>
+{%- from "components/macros.xml.j2" import format_address, format_telecom, format_name -%}
+  <componentOf>
     <encompassingEncounter>
       <!-- encounter ID-->
       <id extension="9937015" root="2.16.840.1.113883.19" />
@@ -14,38 +14,17 @@
         <assignedEntity>
           <!-- Provider ID (NPI) -->
           <id extension="1234567890" root="2.16.840.1.113883.4.6" />
-          <addr use="H">
-            <streetAddressLine>200 Corusca Street</streetAddressLine>
-            <city>Senate District</city>
-            <state>Galactic City</state>
-            <postalCode>GC-500</postalCode>
-            <county>Administrative Core</county>
-            <country>Coruscant</country>
-          </addr>
-          <telecom use="WP" value="tel:+1-555-777-0123" />
-          <telecom use="WP" value="fax:+1-555-777-0987" />
-          <telecom use="WP" value="mailto:dr.hemlock@grmfc.gc.example.com" />
+          {{- format_address(addresses.person) | indent(10, True) -}}
+          {{- format_telecom(telecom) | indent(10, True) }}
           <assignedPerson>
-            <name>
-              <prefix>Dr</prefix>
-              <given>Royce</given>
-              <family>Hemlock</family>
-              <suffix>MD</suffix>
-            </name>
+            {{- format_name(provider.name) | indent(12, True) }}
           </assignedPerson>
           <representedOrganization>
             <!-- Represented Organization-->
             <id extension="1234567893" root="2.16.840.1.113883.4.6" />
             <!-- Provider Facility/Office Name-->
-            <name>Grand Republic Medical Facility Clinic</name>
-            <addr use="WP">
-              <streetAddressLine>500 Republica Medical Plaza, Suite 1000</streetAddressLine>
-              <city>Senate District</city>
-              <state>Galactic City</state>
-              <postalCode>GC-500</postalCode>
-              <county>Administrative Core</county>
-              <country>Coruscant</country>
-            </addr>
+            <name>{{ facility.name }}</name>
+            {{- format_address(addresses.organization) | indent(12, True) }}
           </representedOrganization>
         </assignedEntity>
       </responsibleParty>
@@ -58,28 +37,13 @@
           <code code="OF" codeSystem="2.16.840.1.113883.5.111"
             codeSystemName="HL7RoleCode" displayName="Outpatient Facility" />
           <location>
-            <addr use="WP">
-              <streetAddressLine>500 Republica Medical Plaza, Suite 1000</streetAddressLine>
-              <city>Senate District</city>
-              <state>Galactic City</state>
-              <postalCode>GC-500</postalCode>
-              <county>Administrative Core</county>
-              <country>Coruscant</country>
-            </addr>
+            {{- format_address(addresses.organization) | indent(12, True) }}
           </location>
           <serviceProviderOrganization>
             <!-- Provider Facility/Office Name-->
-            <name>Grand Republic Medical Facility Clinic</name>
-            <telecom use="WP" value="tel:+1-888-000-9999" />
-            <telecom use="WP" value="fax:+1-888-000-1111" />
-            <addr use="WP">
-              <streetAddressLine>500 Republica Medical Plaza, Suite 1000</streetAddressLine>
-              <city>Senate District</city>
-              <state>Galactic City</state>
-              <postalCode>GC-500</postalCode>
-              <county>Administrative Core</county>
-              <country>Coruscant</country>
-            </addr>
+            <name>{{ facility.name }}</name>
+            {{- format_address(addresses.organization) | indent(12, True) -}}
+            {{- format_telecom(telecom) | indent(12, True) }}
           </serviceProviderOrganization>
         </healthCareFacility>
       </location>

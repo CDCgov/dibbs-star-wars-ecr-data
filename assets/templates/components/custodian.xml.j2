@@ -4,7 +4,7 @@
       <representedCustodianOrganization>
         <!-- Custodian ID (NPI) -->
         <id extension="1234567893" root="2.16.840.1.113883.4.6" />
-        <name>{{ components.custodian.name }}</name>
+        <name>{{ custodian.name }}</name>
         {{- format_address(addresses.organization) | indent(8, True) -}}
         {{- format_telecom(telecom) | indent(8, True) }}
       </representedCustodianOrganization>

@@ -1,30 +1,10 @@
 {
-  "base": {
-    "document": {
-      "eicr": {
-        "id": "e91bc1e8-2523-4047-a663-1e3e07812948",
-        "setId": "a2e1311c-e39f-48a2-8a2e-c482ab9abd8c",
-        "versionNumber": 1,
-        "title": "Initial Public Health Case Report",
-        "effectiveTime": "20250219001500-0400"
-      },
-      "rr": {
-        "id": "7f8d597f-18fc-4865-a97c-5e1977594f79",
-        "title": "Reportability Response",
-        "effectiveTime": "20250219003615-0400"
-      },
-      "shared": {
-        "confidentialityCode": {
-          "code": "N",
-          "displayName": "Normal"
-        },
-        "languageCode": "en-US"
-      }
-    },
-    "software": {
-      "manufacturerModelName": "EpicCore Galactic - Version 45.7",
-      "softwareName": "EpicCore Galactic - Version 45.7"
-    }
+  "codeSystems": {
+    "LOINC": "2.16.840.1.113883.6.1",
+    "SNOMED-CT": "2.16.840.1.113883.6.96",
+    "NCI Thesaurus": "2.16.840.1.113883.3.26.1.1",
+    "RxNorm": "2.16.840.1.113883.6.88",
+    "CVX": "2.16.840.1.113883.12.292"
   },
   "addresses":{
     "person": {
@@ -60,87 +40,384 @@
       "value": "an.email@grmfc.gc.example.com"
     }
   },
-  "components": {
-    "facility": {
-      "id": "1234567893",
-      "name": "Grand Republic Medical Facility Clinic",
-      "type": {
-        "code": "OF",
-        "displayName": "Outpatient Facility"
+  "facility": {
+    "name": "Grand Republic Medical Facility Clinic"
+  },
+  "provider": {
+    "id": "1234567890",
+    "name": {
+      "prefix": "Dr",
+      "given": "Royce",
+      "family": "Hemlock",
+      "suffix": "MD"
+    }
+  },
+  "patient": {
+    "id": {
+      "mrn": "MRN-00884455",
+      "ssn": "000-65-4321"
+    },
+    "name": {
+      "use": "L",
+      "prefix": "Senator",
+      "given": "Mon",
+      "family": "Mothma"
+    },
+    "demographics": {
+      "gender": {
+        "code": "F",
+        "displayName": "Female"
+      },
+      "birthDate": "19750101",
+      "deceased": false,
+      "race": {
+        "code": "2106-3",
+        "displayName": "White"
+      },
+      "ethnicity": {
+        "code": "2186-5",
+        "displayName": "Not Hispanic or Latino"
+      },
+      "preferredLanguage": {
+        "code": "en",
+        "displayName": "English"
       }
     },
-    "provider": {
-      "id": "1234567890",
+    "guardian": {
       "name": {
-        "prefix": "Dr",
-        "given": "Royce",
-        "family": "Hemlock",
-        "suffix": "MD"
+        "use": null,
+        "prefix": null,
+        "given": null,
+        "family": null
+      },
+      "relationship": {
+        "code": null,
+        "displayName": null
       }
-    },
-    "patient": {
-      "id": {
-        "mrn": "MRN-00884455",
-        "ssn": "000-65-4321"
-      },
-      "name": {
-        "use": "L",
-        "prefix": "Senator",
-        "given": "Mon",
-        "family": "Mothma"
-      },
-      "demographics": {
-        "gender": {
-          "code": "F",
-          "displayName": "Female"
-        },
-        "birthDate": "19750101",
-        "deceased": false,
-        "race": {
-          "code": "2106-3",
-          "displayName": "White"
-        },
-        "ethnicity": {
-          "code": "2186-5",
-          "displayName": "Not Hispanic or Latino"
-        },
-        "preferredLanguage": {
-          "code": "en",
-          "displayName": "English"
-        }
-      },
-      "guardian": {
-        "name": {
-          "use": null,
-          "prefix": null,
-          "given": null,
-          "family": null
-        },
-        "relationship": {
-          "code": null,
-          "displayName": null
-        }
-      }
-    },
-    "author": {
-      "time": "20250215150045-0400",
-      "organization": {
-        "name": "Grand Republic Medical Facility Clinic"
-      },
-      "manufacturerModelName": "EpicCore Galactic - Version 45.7",
-      "softwareName": "EpicCore Galactic - Version 45.7"
-    },
-    "custodian": {
+    }
+  },
+  "author": {
+    "time": "20250215150045-0400",
+    "organization": {
       "name": "Grand Republic Medical Facility Clinic"
     },
-    "participant":{
-      "associatedPerson": {
-        "name": {
-          "prefix": "Mr",
-          "given": "Perrin",
-          "family": "Fertha"
+    "manufacturerModelName": "EpicCore Galactic - Version 45.7",
+    "softwareName": "EpicCore Galactic - Version 45.7"
+  },
+  "custodian": {
+    "name": "Grand Republic Medical Facility Clinic"
+  },
+  "participant":{
+    "associatedPerson": {
+      "name": {
+        "prefix": "Mr",
+        "given": "Perrin",
+        "family": "Fertha"
+      }
+    }
+  },
+  "sections": {
+    "encounters": {
+      "diagnosis": [
+        {
+          "ID": "covid_diagnosis_ref",
+          "code": "840539006",
+          "codeSystemName": "SNOMED-CT",
+          "displayName": "Disease caused by severe acute respiratory syndrome coronavirus 2 (disorder)"
+        },
+        {
+          "ID": "influenza_diagnosis_ref",
+          "code": "772828001",
+          "codeSystemName": "SNOMED-CT",
+          "displayName": "Influenza caused by Influenza A virus subtype H5N1 (disorder)"
+        }
+      ]
+    },
+    "history_of_present_illness": {
+      "entries": [
+        {
+          "text": "The patient initially presented on February 16, 2025 with difficulty breathing and fever. At follow-up on February 17, patient reported worsening symptoms including cough. Patient disclosed recent travel to a known COVID-19 hot zone from February 8-14, 2025, prompting SARS-CoV-2 testing."
+        },
+        {
+          "text": "On February 21, 2025, test results returned positive for SARS-CoV-2. Patient also reported increased muscle aches, headache, and fatigue. Additional testing revealed concurrent Influenza A infection. Patient diagnosis updated to confirmed COVID-19 and Influenza A co-infection."
+        }
+      ]
+    },
+    "chief_complaint": {
+      "text": "Chief Complaint (the patient's own description): Headache and rash"
+    },
+    "reason_for_visit":  {
+      "text": "fever, cough, exposure to COVID-19 hot zone"
+    },
+    "social_history": {
+      "birth_sex": {
+        "code": "F",
+        "displayName": "Female",
+        "dateValue": "19750101",
+        "dateStr": "01/01/1975"
+      },
+      "occupation": {
+        "code": "11000",
+        "displayName": "Government Officials",
+        "details": "Galactic Senator"
+      },
+      "pregnancy_status": {
+        "code": "60001007",
+        "codeSystemName": "SNOMED-CT",
+        "displayName": "Not pregnant"
+      },
+      "travel_history": {
+        "text": "Recent travel to Chandrila",
+        "start": "20250208",
+        "end": "20250214",
+        "datesStr": "02/08/2025 - 02/14/2025"
+      }
+    },
+    "problems":  {
+      "observations": [
+        {
+          "code": "75325-1",
+          "codeSystemName": "LOINC",
+          "displayName": "SYMPTOM",
+          "translation": {
+            "code": "418799008",
+            "codeSystemName": "SNOMED-CT",
+            "displayName": "SYMPTOM"
+          },
+          "value": {
+            "code": "230145002",
+            "codeSystemName": "SNOMED-CT",
+            "displayName": "Difficulty Breathing (finding)"
+          }
+        },
+        {
+          "code": "75325-1",
+          "codeSystemName": "LOINC",
+          "displayName": "SYMPTOM",
+          "value": {
+            "code": "186747009",
+            "codeSystemName": "SNOMED-CT",
+            "displayName": "Coronavirus infection (disorder)"
+          },
+          "sdtc": {
+            "valueSet": "2.16.840.1.114222.4.11.7508",
+            "valueSetVersion": "20250216"
+          }
+        },
+        {
+          "code": "75323-6",
+          "codeSystemName": "LOINC",
+          "displayName": "Condition",
+          "value": {
+            "code": "840539006",
+            "codeSystemName": "SNOMED-CT",
+            "displayName": "Disease caused by severe acute respiratory syndrome coronavirus 2 (disorder)"
+          },
+          "sdtc": {
+            "valueSet": "2.16.840.1.114222.4.11.7508",
+            "valueSetVersion": "20250216"
+          }
+        },
+        {
+          "code": "75323-6",
+          "codeSystemName": "LOINC",
+          "displayName": "Condition",
+          "value": {
+            "code": "719865001",
+            "codeSystemName": "SNOMED-CT",
+            "displayName": "Influenza A virus infection (disorder)"
+          },
+          "sdtc": {
+            "valueSet": "2.16.840.1.114222.4.11.7508",
+            "valueSetVersion": "20250216"
+          }
+        }
+      ]
+    },
+    "medications_administered": [
+      {
+        "route": {
+          "code": "C38288",
+          "codeSystemName": "NCI Thesaurus",
+          "displayName": "ORAL"
+        },
+        "doseQuantity": {
+          "value": 1,
+          "unit": "g"
+        },
+        "manufacturedMaterial": {
+          "code": "248656",
+          "codeSystemName": "RxNorm",
+          "displayName": "Azithromycin 500 MG Oral Tablet"
+        },
+        "entryRelationships": [
+          {
+            "type": "observations/therapeutic-response",
+            "typeCode": "CAUS",
+            "value": {
+              "code": "268910001",
+              "codeSystemName": "SNOMED-CT",
+              "displayName": "Patient's condition improved (finding)"
+            }
+          }
+        ]
+      }
+    ],
+    "results": [
+      {
+        "code": "94310-0",
+        "codeSystemName": "LOINC",
+        "displayName": "SARS-like Coronavirus N gene [Presence] in Unspecified specimen by NAA with probe detection",
+        "value": {
+          "code": "260373001",
+          "codeSystemName": "SNOMED-CT",
+          "displayName": "Detected (qualifier value)"
+        },
+        "sdtc": {
+          "valueSet": "2.16.840.1.114222.4.11.7508",
+          "valueSetVersion": "20250216"
+        }
+      },
+      {
+        "code": "34487-9",
+        "codeSystemName": "LOINC",
+        "displayName": "Influenza virus A RNA [Presence] in Respiratory specimen by NAA with probe detection",
+        "value": {
+          "code": "260373001",
+          "codeSystemName": "SNOMED-CT",
+          "displayName": "Detected (qualifier value)"
         }
       }
+    ],
+    "immunizations": {
+      "activities": [
+        {
+          "manufacturedMaterial": {
+            "code": "106",
+            "displayName": "diphtheria, tetanus toxoids and acellular pertussis vaccine, 5 pertussis antigens"
+          }
+        },
+        {
+          "manufacturedMaterial": {
+            "code": "24",
+            "codeSystemName": "CVX",
+            "displayName": "anthrax vaccine"
+          },
+          "sdtc": {
+            "valueSet": "2.16.840.1.114222.4.11.7508",
+            "valueSetVersion": "2020-11-13"
+          }
+        }
+      ],
+      "patientAssertion": {
+        "code": "Y",
+        "displayName": "Yes"
+      }
+    },
+    "vital_signs": {
+      "systolic": 120,
+      "diastolic": 80,
+      "pulse": 80,
+      "temp": 99.0,
+      "respiratoryRate": 18,
+      "heightStr": "5'7 (67 inches)",
+      "height": 67,
+      "weight": 160.0,
+      "bmi": 25.1,
+      "spo": 98
+    },
+    "plan_of_treatment": {
+      "entries": [
+        {
+          "type": "observations/planned",
+          "code": "94500-6",
+          "codeSystemName": "LOINC",
+          "displayName": "SARS-CoV-2 (COVID-19) RNA panel - Respiratory specimen by NAA with probe detection",
+          "sdtc": {
+            "valueSet": "2.16.840.1.114222.4.11.7508",
+            "valueSetVersion": "20250216"
+          }
+        },
+        {
+          "type": "observations/planned",
+          "code": "25836-8",
+          "codeSystemName": "LOINC",
+          "displayName": "Influenza virus A RNA panel",
+          "sdtc": {
+            "valueSet": "2.16.840.1.114222.4.11.7508",
+            "valueSetVersion": "20250216"
+          }
+        },
+        {
+          "type": "activities/medication-activity",
+          "route": {
+            "code": "47625008",
+            "codeSystemName": "SNOMED-CT",
+            "displayName": "Intravenous route"
+          },
+          "doseQuantity": {
+            "value": 100,
+            "unit": "mg"
+          },
+          "manufacturedMaterial": {
+            "code": "2284960",
+            "codeSystemName": "RxNorm",
+            "displayName": "remdesivir 100 MG Injection",
+            "originalText": "Remdesivir 100mg IV daily for 5 days"
+          },
+          "entryRelationships": [
+            {
+              "type": "observations/indication",
+              "typeCode": "RSON",
+              "value": {
+                "code": "840539006",
+                "codeSystemName": "SNOMED-CT",
+                "displayName": "Disease caused by severe acute respiratory syndrome coronavirus 2 (disorder)"
+              }
+            }
+          ]
+        },
+        {
+          "type": "activities/medication-activity",
+          "route": {
+            "code": "26643006",
+            "codeSystemName": "SNOMED-CT",
+            "displayName": "Oral route"
+          },
+          "doseQuantity": {
+            "value": 1,
+            "unit": "capsule"
+          },
+          "manufacturedMaterial": {
+            "code": "371005",
+            "codeSystemName": "RxNorm",
+            "displayName": "Oseltamivir 75 MG Oral Capsule",
+            "originalText": "Oseltamivir (Tamiflu) 75mg capsule PO twice daily for 5 days"
+          },
+          "entryRelationships": [
+            {
+              "type": "observations/indication",
+              "typeCode": "RSON",
+              "value": {
+                "code": "772828001",
+                "codeSystemName": "SNOMED-CT",
+                "displayName": "Influenza caused by Influenza A virus subtype H5N1 (disorder)"
+              }
+            }
+          ]
+        },
+        {
+          "type": "encounters/planned",
+          "code": "270427003",
+          "codeSystemName": "SNOMED-CT",
+          "displayName": "Patient-initiated encounter",
+          "participantRole": {
+            "code": "1184-0",
+            "displayName": "Telemedicine"
+          },
+          "text": "Follow-up telehealth visit in 3 days to assess response to treatment"
+        }
+      ]
     }
   },
   "patterns": {

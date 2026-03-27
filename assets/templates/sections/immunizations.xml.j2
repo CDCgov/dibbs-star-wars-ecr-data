@@ -1,0 +1,80 @@
+{%- from "activities/immunization-activity.xml.j2" import render_immunization_activity %}
+        <section>
+          <!-- [C-CDA R2.1] Immunizations Section (entries required)(V3) -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.2.1" extension="2015-08-01" />
+          <code code="11369-6" displayName="Hx of Immunization"
+            codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+          <title>Immunizations</title>
+          <text>
+            <table>
+              <thead>
+                <tr>
+                  <th>Immunization</th>
+                  <th>Immunization Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {%- for activity in sections.immunizations.activities %}
+                <tr>
+                  <td>{{ activity.manufacturedMaterial.displayName }}</td>
+                  <td>NOV 11, 2020</td>
+                </tr>
+                {%- endfor %}
+              </tbody>
+            </table>
+            <table>
+              <thead>
+                <tr>
+                  <th>Initial Case Report Trigger Code <br /> Immunization
+                    Medication Activity </th>
+                  <th>Immunization Date</th>
+                  <th>Trigger <br /> Code </th>
+                  <th>Trigger Code <br /> codeSystem </th>
+                  <th>RCTC OID</th>
+                  <th>RCTC <br /> Version </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>influenza virus vaccine, unspecified formulation</td>
+                  <td>NOV 11, 2020</td>
+                  <td>88</td>
+                  <td>CVX</td>
+                  <td>2.16.840.1.114222.4.11.7508</td>
+                  <td>19/05/2020</td>
+                </tr>
+              </tbody>
+            </table>
+            <table>
+              <thead>
+                <tr>
+                  <th>Vaccinne Credential Patient Assertion</th>
+                  <th>Assertion Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ sections.immunizations.patientAssertion.displayName }}</td>
+                  <td>NOV 11, 2020</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          {%- for activity in sections.immunizations.activities -%}
+          {{ render_immunization_activity(activity, codeSystems) | indent(10, True) }}
+          {%- endfor %}
+          <entry typeCode="DRIV">
+            <observation classCode="OBS" moodCode="EVN">
+              <!-- [eICR R2 STU3] Vaccine Credential Patient Assertion -->
+              <templateId root="2.16.840.1.113883.10.20.15.2.3.55"
+                extension="2021-01-01" />
+              <id root="3adc7f4d-ff0a-4b38-9252-bd65edbe3dff" />
+              <code code="11370-4" displayName="Immunization status - Reported"
+                codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+              <statusCode code="completed" />
+              <effectiveTime value="20201107" />
+              <value xsi:type="CD" code="{{ sections.immunizations.patientAssertion.code }}" codeSystem="2.16.840.1.113883.12.136"
+                displayName="{{ sections.immunizations.patientAssertion.displayName }}" codeSystemName="Yes/No Indicator (HL7 Table 0136)" />
+            </observation>
+          </entry>
+        </section>

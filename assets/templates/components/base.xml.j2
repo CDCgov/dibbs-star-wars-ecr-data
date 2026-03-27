@@ -36,5 +36,66 @@
 
   <!-- componentOf: contains the encompassingEncouter and the provider and facility information for
   the case. -->
+  {% include 'components/componentOf.xml.j2' %}
 
+  <!-- first component holds the structredBody -->
+  <component>
+    <!-- structredBody contains all of the clinical sections of the eICR -->
+    <structuredBody>
+      <!-- Encounters section -->
+      <component>
+      {%- include 'sections/encounters.xml.j2' %}
+      </component>
+
+      <!-- History of Present Illness Section -->
+      <component>
+      {%- include 'sections/history-of-present-illness.xml.j2' %}
+      </component>
+
+      <!-- Chief Complaint Section -->
+      <component>
+      {%- include 'sections/chief-complaint.xml.j2' %}
+      </component>
+
+      <!-- Reason for visit Section -->
+      <component>
+      {%- include 'sections/reason-for-visit.xml.j2' %}
+      </component>
+
+       <!-- Social History Section -->
+      <component>
+      {%- include 'sections/social-history.xml.j2' %}
+      </component>
+
+      <!-- Problems Section -->
+      <component>
+      {%- include 'sections/problems-section.xml.j2' %}
+      </component>
+
+      <!-- Medications Administered Section -->
+      <component>
+      {%- include 'sections/medications-administered.xml.j2' %}
+      </component>
+
+      <!-- Results Section -->
+      <component>
+      {%- include 'sections/results.xml.j2' %}
+      </component>
+
+      <!-- Immunizations Section -->
+      <component>
+      {%- include 'sections/immunizations.xml.j2' %}
+      </component>
+
+      <!-- Vital Signs Section -->
+      <component>
+      {%- include 'sections/vital-signs.xml.j2' %}
+      </component>
+
+      <!-- Plan of Care/Treatment Section -->
+      <component>
+      {%- include 'sections/plan-of-treatment.xml.j2' %}
+      </component>
+    </structuredBody>
+  </component>
 </ClinicalDocument>

@@ -1,0 +1,53 @@
+{%- from "observations/therapeutic-response.xml.j2" import render_therapeutic_response_obs -%}
+{%- from "observations/indication.xml.j2" import render_indication_obs -%}
+{% macro render_medication_activity(medication_activity, codeSystems) %}
+<substanceAdministration classCode="SBADM" moodCode="EVN">
+  <!-- [C-CDA R1.1] Medication Activity -->
+  <templateId root="2.16.840.1.113883.10.20.22.4.16" />
+  <!-- [C-CDA R2.0] Medication Activity (V2) -->
+  <templateId root="2.16.840.1.113883.10.20.22.4.16"
+    extension="2014-06-09" />
+  <id root="{{ uuid() }}" />
+  {#- TODO: Should support status code and effecti times here? #}
+  <statusCode code="completed" />
+  <effectiveTime value="202011071159-0700" />
+  <effectiveTime xsi:type="PIVL_TS" institutionSpecified="true"
+    operator="A">
+    <period value="12" unit="h" />
+  </effectiveTime>
+  <routeCode code="{{ medication_activity.route.code }}" codeSystem="{{ codeSystems[medication_activity.route.codeSystemName|trim] }}"
+    codeSystemName="{{ medication_activity.route.codeSystemName }}" displayName="{{ medication_activity.route.displayName }}" />
+  <doseQuantity value="{{ medication_activity.doseQuantity.value }}" unit="{{ medication_activity.doseQuantity.unit }}" />
+  <consumable>
+    <manufacturedProduct classCode="MANU">
+      <!-- [C-CDA R2.0] Medication Information (V2) -->
+      <templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09" />
+      {#- (TODO: is this needed?) <!-- [eICR R2 STU2] Initial Case Report Trigger Code Medication Information --> -#}
+      {#- <templateId root="2.16.840.1.113883.10.20.15.2.3.36" extension="2019-04-01" /> #}
+      <id root="{{ uuid() }}" />
+      <manufacturedMaterial>
+        <code code="{{ medication_activity.manufacturedMaterial.code }}" codeSystem="{{ codeSystems[medication_activity.manufacturedMaterial.codeSystemName|trim] }}"
+          codeSystemName="{{ medication_activity.manufacturedMaterial.codeSystemName }}"
+          displayName="{{ medication_activity.manufacturedMaterial.displayName }}"
+          {% if medication_activity.sdtc -%}
+          sdtc:valueSet="{{ medication_activity.sdtc.valueSet }}" sdtc:valueSetVersion="{{ medication_activity.sdtc.valueSetVersion }}"
+          {% endif -%}
+          >
+          {% if medication_activity.manufacturedMaterial.originalText -%}
+          <originalText>{{ medication_activity.manufacturedMaterial.originalText }}</originalText>
+          {%- endif %}
+        </code>
+      </manufacturedMaterial>
+    </manufacturedProduct>
+  </consumable>
+  {%- for entry in medication_activity.entryRelationships %}
+  <entryRelationship typeCode="{{ entry.typeCode }}">
+    {%- if entry.type == "observations/therapeutic-response" -%}
+    {{ render_therapeutic_response_obs(entry, codeSystems) | indent(4, True) }}
+    {%- elif entry.type == "observations/indication" -%}
+    {{ render_indication_obs(entry, codeSystems) | indent(4, True) }}
+    {%- endif %}
+  </entryRelationship>
+  {%- endfor %}
+</substanceAdministration>
+{%- endmacro %}

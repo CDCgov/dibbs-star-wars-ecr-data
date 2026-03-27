@@ -1,0 +1,118 @@
+
+        <section>
+          <!-- [C-CDA R1.1] Results Section (entries optional) -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.3" />
+          <!-- [C-CDA R2.1] Results Section (entries optional) (V3) -->
+          <templateId extension="2015-08-01"
+            root="2.16.840.1.113883.10.20.22.2.3" />
+          <!-- [C-CDA R1.1] Results Section (entries required) -->
+          <templateId
+            root="2.16.840.1.113883.10.20.22.2.3.1" />
+          <!-- [C-CDA R2.1] Results Section (entries required) (V3) -->
+          <templateId extension="2015-08-01"
+            root="2.16.840.1.113883.10.20.22.2.3.1" />
+          <code code="30954-2"
+            codeSystem="2.16.840.1.113883.6.1"
+            codeSystemName="LOINC"
+            displayName="Relevant diagnostic tests and/or laboratory data" />
+          <title>Results</title>
+          <text>
+            <table>
+              <thead>
+                <tr>
+                  <th>Results Panel</th>
+                  <th>Date(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for result in sections.results -%}
+                <tr>
+                  <td>{{ result.displayName }}</td>
+                  <td />
+                </tr>
+                <tr>
+                  <td>
+                    <list>
+                      <item>
+                        <paragraph>*** In the table below, row entries with values under RCTC
+                          columns triggered this
+                          Electronic Initial Case Report (eICR)</paragraph>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Test</th>
+                              <th>Lab Test RCTC OID ***</th>
+                              <th>Lab Test RCTC Version ***</th>
+                              <th>Outcome</th>
+                              <th>Date(s)</th>
+                              <th>Lab Result RCTC OID ***</th>
+                              <th>Lab Result RCTC Version ***</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{ result.displayName }}</td>
+                              {%- if result.sdtc %}
+                              <td>{{ result.sdtc.valueSet }}</td>
+                              <td>{{ result.sdtc.valueSetVersion }}</td>
+                              {%- else %}
+                              <td />
+                              <td />
+                              {%- endif %}
+                              <td>{{ result.value.displayName }}</td>
+                              <td>02/21/2025</td>
+                              <td />
+                              <td />
+                            </tr>
+                          </tbody>
+                        </table>
+                      </item>
+                    </list>
+                  </td>
+                </tr>
+                {%- endfor %}
+              </tbody>
+            </table>
+          </text>
+          {% for result in sections.results -%}
+          <!-- Test Result Entry -->
+          <entry typeCode="DRIV">
+            <organizer classCode="BATTERY" moodCode="EVN">
+              <!-- [C-CDA R1.1] Result Organizer -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.1" />
+              <!-- [C-CDA R2.1] Result Organizer (V3) -->
+              <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.1" />
+              <id root="{{ uuid() }}" />
+              <code code="{{ result.code }}" codeSystem="{{ codeSystems[result.codeSystemName|trim] }}"
+                codeSystemName="{{ result.codeSystemName }}" displayName="{{ result.displayName }}" />
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20250221" />
+                <high value="20250221" />
+              </effectiveTime>
+              <component>
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- [C-CDA R1.1] Result Observation -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.2" />
+                  <!-- [C-CDA R2.1] Result Observation (V3) -->
+                  <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.2" />
+                  <!-- [eICR R2 STU1.1] Initial Case Report Trigger Code Result Observation -->
+                  <templateId extension="2016-12-01" root="2.16.840.1.113883.10.20.15.2.3.2" />
+                  <id root="{{ uuid() }}" />
+                  <code code="{{ result.code }}" codeSystem="{{ codeSystems[result.codeSystemName|trim] }}"
+                    codeSystemName="{{ result.codeSystemName }}" displayName="{{ result.displayName }}"
+                    {% if result.sdtc -%}
+                    sdtc:valueSet="{{ result.sdtc.valueSet }}" sdtc:valueSetVersion="{{ result.sdtc.valueSetVersion }}"
+                    {% endif -%}
+                    xsi:type="CD" />
+                  <statusCode code="completed" />
+                  <effectiveTime value="20250221" />
+                  <value code="{{ result.value.code }}" codeSystem="{{ codeSystems[result.value.codeSystemName|trim] }}"
+                    codeSystemName="{{ result.value.codeSystemName }}" displayName="{{ result.value.displayName }}"
+                    xsi:type="CD" />
+                </observation>
+              </component>
+            </organizer>
+          </entry>
+          {%- endfor %}
+        </section>

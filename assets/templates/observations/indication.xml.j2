@@ -1,0 +1,17 @@
+{% macro render_indication_obs(indication, codeSystems) %}
+<observation classCode="OBS" moodCode="EVN">
+  <!-- [C-CDA R1.1] Indication -->
+  <templateId root="2.16.840.1.113883.10.20.22.4.19" />
+  <!-- [C-CDA R2.1] Indication (V2) -->
+  <templateId root="2.16.840.1.113883.10.20.22.4.19" extension="2014-06-09" />
+  <id root="{{ uuid() }}" />
+  <code code="75323-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
+    displayName="Condition" />
+  <statusCode code="completed" />
+  <value xsi:type="CD" code="{{ indication.value.code }}" codeSystem="{{ codeSystems[indication.value.codeSystemName|trim] }}"
+    codeSystemName="{{ indication.value.codeSystemName }}" displayName="{{ indication.value.displayName }}"
+    {% if indication.sdtc -%}
+    sdtc:valueSet="{{ indication.sdtc.valueSet }}" sdtc:valueSetVersion="{{ indication.sdtc.valueSetVersion }}"
+    {% endif -%}/>
+</observation>
+{%- endmacro %}
