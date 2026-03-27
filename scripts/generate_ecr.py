@@ -2,6 +2,15 @@ from jinja2 import Environment, FileSystemLoader
 from pathlib import Path
 import json
 from utils import generate_uuid, generate_timestamp
+import argparse
+
+parser = argparse.ArgumentParser(description='Generate ECR XML file from a given mapping json file.')
+parser.add_argument('-m', '--mapping', type=str, help='File name of mapping json file, will default to mon-mothma-covid.json')
+args = parser.parse_args()
+mapping_file = "mon-mothma-covid.json"
+
+if args.mapping:
+  mapping_file = args.mapping
 
 # Setup the Jinja environment to load templates
 env = Environment(
@@ -18,9 +27,17 @@ template = env.get_template('components/base.xml.j2')
 
 # Define the data you want to inject
 base_path = Path(__file__).resolve().parent.parent
-json_path = base_path / "assets" / "mappings" / "mon-mothma-covid.json"
+json_path = base_path / "assets" / "mappings" / mapping_file
 with open(json_path) as f:
     data = json.load(f)
+
+# Set globals from data
+if 'config' in data :
+  if 'lab_results_repetitions' in data['config']:
+    env.globals['lab_results_repetitions'] = data['config']['lab_results_repetitions']
+else :
+  env.globals['lab_results_repetitions'] = 1
+env.globals['codeSystems'] = data["codeSystems"]
 
 xml_nsmap = {
         None: "urn:hl7-org:v3",
@@ -33,8 +50,10 @@ xml_nsmap = {
 # Render the template with your data
 rendered_xml = template.render(data, nsmap=xml_nsmap)
 
-# 5. Save the output to a new XML file
-with open("output.xml", "w", encoding="utf-8") as f:
+# Save the output to a new XML file - TODO: re-enabled timestamped filenames
+#output_filename = mapping_file.replace(".json", "-"+generate_timestamp(None, True)+".xml")
+output_filename = mapping_file.replace(".json", ".xml")
+with open(output_filename, "w", encoding="utf-8") as f:
     f.write(rendered_xml)
 
-print("XML file generated successfully!")
+print("XML file [" + output_filename + "] generated successfully!")

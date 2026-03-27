@@ -19,9 +19,18 @@
   <effectiveTime value="{{ timestamp() }}" />
   <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="Normal" />
   <languageCode code="en-US" />
-  <setId extension="8d86218e-0fea-11eb-8216-a80388425cfb"
+  {%- if base.setId %}
+  <setId extension="{{ base.setId.extension }}"
+  root="{{ base.setId.root }}" />
+  {%- else -%}
+  <setId extension="{{ uuid() }}"
   root="1.2.840.114350.1.13.380.3.7.1.1" />
-  <versionNumber value="3" />
+  {%- endif %}
+  {%- if base.version %}
+  <versionNumber value="{{ base.version }}" />
+  {%- else -%}
+  <versionNumber value="1" />
+  {%- endif %}
 
   <!-- recordTarget: The patient -->
   {%- include 'components/patient.xml.j2' %}
@@ -38,9 +47,9 @@
   the case. -->
   {% include 'components/componentOf.xml.j2' %}
 
-  <!-- first component holds the structredBody -->
+  <!-- first component holds the structuredBody -->
   <component>
-    <!-- structredBody contains all of the clinical sections of the eICR -->
+    <!-- structuredBody contains all of the clinical sections of the eICR -->
     <structuredBody>
       <!-- Encounters section -->
       <component>
@@ -95,6 +104,27 @@
       <!-- Plan of Care/Treatment Section -->
       <component>
       {%- include 'sections/plan-of-treatment.xml.j2' %}
+      </component>
+
+      {#- TODO: The sections below have not been fully templated yet #}
+      <!-- Pregnancy Section -->
+      <component>
+      {%- include 'sections/pregnancy.xml.j2' %}
+      </component>
+
+      <!-- Procedures Section -->
+      <component>
+      {%- include 'sections/procedures.xml.j2' %}
+      </component>
+
+      <!-- Emergency Outbreak Information -->
+      <component>
+      {%- include 'sections/emergency-outbreak.xml.j2' %}
+      </component>
+
+      <!-- Reportability Response Information -->
+      <component>
+      {%- include 'sections/reportability-response.xml.j2' %}
       </component>
     </structuredBody>
   </component>

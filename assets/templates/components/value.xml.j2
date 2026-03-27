@@ -1,0 +1,16 @@
+{% macro render_value(value) %}
+{%- if value.code %}
+<value code="{{ value.code }}" codeSystem="{{ codeSystems[value.codeSystemName|trim] }}"
+    codeSystemName="{{ value.codeSystemName }}" displayName="{{ value.displayName }}"
+    xsi:type="CD" />
+{%- elif value.unit and value.value %}
+<value unit="{{ value.unit }}" value="{{ value.value }}" xsi:type="PQ" />
+{%- elif value.low and value.high %}
+<value xsi:type="IVL_PQ">
+  {%- if value.low %}
+  <low unit="{{ value.unit }}" value="{{ value.low }}" />
+  {%- endif %}
+  <high unit="{{ value.unit }}" value="{{ value.high }}" />
+</value>
+{%- endif %}
+{%- endmacro %}

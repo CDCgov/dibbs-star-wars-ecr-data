@@ -65,11 +65,11 @@
           {%- for entry in sections.plan_of_treatment.entries %}
           <entry typeCode="DRIV">
           {%- if entry.type == "observations/planned" -%}
-          {{ render_planned_obs(entry, codeSystems) | indent(12, True) }}
+          {{ render_planned_obs(entry) | indent(12, True) }}
           {%- elif entry.type == "activities/medication-activity" -%}
-          {{ render_medication_activity(entry, codeSystems) | indent(12, True) }}
+          {{ render_medication_activity(entry) | indent(12, True) }}
           {%- elif entry.type == "encounters/planned" -%}
-          {{ render_planned_encounter(entry, codeSystems) | indent(12, True) }}
+          {{ render_planned_encounter(entry) | indent(12, True) }}
           {%- endif %}
           </entry>
           {%- endfor %}

@@ -1,0 +1,42 @@
+{#- TODO: This section needs to be templated #}
+        <section>
+          <!-- [eICR R2 STU3] Emergency Outbreak Information Section -->
+          <templateId root="2.16.840.1.113883.10.20.15.2.2.4" extension="2021-01-01" />
+          <code code="83910-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
+            displayName="Public health Note" />
+          <title>Emergency Outbreak Information Section</title>
+          <text>
+            <table>
+              <thead>
+                <tr>
+                  <th>Information Type</th>
+                  <th>Information Date</th>
+                  <th>Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Employee desk distance from mail sorter</td>
+                  <td>1 November 2020</td>
+                  <td>2 meters</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <!-- [eICR R2 STU3] Emergency Outbreak Information Observation -->
+          <entry typeCode="DRIV">
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.15.2.3.40"
+                extension="2021-01-01" />
+              <id root="ab1791b0-5c71-11db-b0de-0800200c9a54" />
+              <code nullFlavor="OTH">
+                <originalText>Employee desk distance from mail sorter</originalText>
+              </code>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20201101" />
+              </effectiveTime>
+              <value xsi:type="PQ" value="2" unit="m" />
+            </observation>
+          </entry>
+        </section>

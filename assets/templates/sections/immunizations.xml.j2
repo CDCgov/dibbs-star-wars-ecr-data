@@ -61,7 +61,7 @@
             </table>
           </text>
           {%- for activity in sections.immunizations.activities -%}
-          {{ render_immunization_activity(activity, codeSystems) | indent(10, True) }}
+          {{ render_immunization_activity(activity) | indent(10, True) }}
           {%- endfor %}
           <entry typeCode="DRIV">
             <observation classCode="OBS" moodCode="EVN">

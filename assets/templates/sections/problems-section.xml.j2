@@ -86,7 +86,7 @@
               </effectiveTime>
               {%- for problem in sections.problems.observations %}
               <entryRelationship typeCode="SUBJ">
-              {{- render_problem(problem, codeSystems) | indent(16, True) }}
+              {{- render_problem(problem) | indent(16, True) }}
               </entryRelationship>
               {%- endfor %}
             </act>

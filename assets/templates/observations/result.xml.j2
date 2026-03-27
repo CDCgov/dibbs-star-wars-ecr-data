@@ -1,0 +1,47 @@
+{%- from "components/value.xml.j2" import render_value %}
+{%- from "observations/lab-result-status.xml.j2" import render_lab_result_status_obs %}
+{% macro render_result_obs(result) %}
+<observation classCode="OBS" moodCode="EVN">
+  <!-- [C-CDA R1.1] Result Observation -->
+  <templateId root="2.16.840.1.113883.10.20.22.4.2" />
+  <!-- [C-CDA R2.1] Result Observation (V3) -->
+  <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.2" />
+  {#- (TODO: is this needed?) <!-- [eICR R2 STU1.1] Initial Case Report Trigger Code Result Observation --> #}
+  {#- <templateId extension="2016-12-01" root="2.16.840.1.113883.10.20.15.2.3.2" /> #}
+  <id root="{{ uuid() }}" />
+  <code code="{{ result.code }}" codeSystem="{{ codeSystems[result.codeSystemName|trim] }}"
+    codeSystemName="{{ result.codeSystemName }}" displayName="{{ result.displayName }}"
+    {% if result.sdtc -%}
+    sdtc:valueSet="{{ result.sdtc.valueSet }}" sdtc:valueSetVersion="{{ result.sdtc.valueSetVersion }}"
+    {% endif -%}
+    xsi:type="CD" />
+  <statusCode code="completed" />
+  <effectiveTime value="20250221" />
+  {{- render_value(result.value) | indent(2, True) }}
+  {%- if result.interpretationCode %}
+  <interpretationCode code="{{ result.interpretationCode.code }}" codeSystem="2.16.840.1.113883.5.83"
+    displayName="{{ result.interpretationCode.displayName }}" />
+  {%- endif %}
+  {%- if result.referenceRange %}
+  <referenceRange>
+    <observationRange>
+      {%- if result.referenceRange.interpretationCode %}
+      <text>{{ result.referenceRange.interpretationCode.displayName }}</text>
+      {%- endif %}
+      {{- render_value(result.referenceRange.value) | indent(6, True) }}
+      {%- if result.interpretationCode %}
+      <interpretationCode code="{{ result.referenceRange.interpretationCode.code }}" codeSystem="2.16.840.1.113883.5.83"
+        displayName="{{ result.referenceRange.interpretationCode.displayName }}" />
+      {%- endif %}
+    </observationRange>
+  </referenceRange>
+  {%- endif %}
+  {%- if result.entryRelationship %}
+  <entryRelationship typeCode="COMP">
+  {%- if result.entryRelationship == "observations/lab-result-status" %}
+  {{- render_lab_result_status_obs() | indent(4, True) }}
+  {%- endif %}
+  </entryRelationship>
+  {%- endif %}
+</observation>
+{%- endmacro %}

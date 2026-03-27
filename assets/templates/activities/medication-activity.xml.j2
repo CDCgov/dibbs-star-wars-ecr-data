@@ -1,6 +1,6 @@
 {%- from "observations/therapeutic-response.xml.j2" import render_therapeutic_response_obs -%}
 {%- from "observations/indication.xml.j2" import render_indication_obs -%}
-{% macro render_medication_activity(medication_activity, codeSystems) %}
+{% macro render_medication_activity(medication_activity) %}
 <substanceAdministration classCode="SBADM" moodCode="EVN">
   <!-- [C-CDA R1.1] Medication Activity -->
   <templateId root="2.16.840.1.113883.10.20.22.4.16" />
@@ -43,9 +43,9 @@
   {%- for entry in medication_activity.entryRelationships %}
   <entryRelationship typeCode="{{ entry.typeCode }}">
     {%- if entry.type == "observations/therapeutic-response" -%}
-    {{ render_therapeutic_response_obs(entry, codeSystems) | indent(4, True) }}
+    {{ render_therapeutic_response_obs(entry) | indent(4, True) }}
     {%- elif entry.type == "observations/indication" -%}
-    {{ render_indication_obs(entry, codeSystems) | indent(4, True) }}
+    {{ render_indication_obs(entry) | indent(4, True) }}
     {%- endif %}
   </entryRelationship>
   {%- endfor %}

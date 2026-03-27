@@ -1,4 +1,7 @@
 {
+  "config": {
+    "lab_results_repetitions": 2
+  },
   "base": {
     "setId": {
       "extension": "8d86218e-0fea-11eb-8216-a80388425cfb",

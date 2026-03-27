@@ -1,0 +1,14 @@
+{#- TODO: This need to be templated when needed -#}
+{% macro render_lab_result_status_obs() %}
+<observation classCode="OBS" moodCode="EVN">
+  <!-- [C-CDA ID] Laboratory Result Status (ID) -->
+  <templateId root="2.16.840.1.113883.10.20.22.4.418"
+    extension="2020-09-01" />
+  <code code="92235-1" displayName="Laboratory Result Status"
+    codeSystemName="LOINC" codeSystem="2.16.840.1.113883.6.1" />
+  <value xsi:type="CE" code="F"
+    displayName="Final results; results stored and verified. Can only be changed with a corrected result."
+    codeSystem="2.16.840.1.113883.18.51"
+    codeSystemName="HL7ResultStatus" />
+</observation>
+{%- endmacro %}

@@ -31,7 +31,7 @@
           </text>
           {%- for medication_activity in sections.medications_administered -%}
           <entry typeCode="DRIV">
-          {{ render_medication_activity(medication_activity, codeSystems) | indent(12, True) }}
+          {{ render_medication_activity(medication_activity) | indent(12, True) }}
           </entry>
           {%- endfor %}
         </section>
