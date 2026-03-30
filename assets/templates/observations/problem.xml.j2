@@ -1,3 +1,4 @@
+{%- from "components/value.xml.j2" import render_value %}
 {% macro render_problem(problem) %}
 <!-- Problem Observation -->
 <observation classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18,11 +19,6 @@
   <effectiveTime>
     <low value="20250216" />
   </effectiveTime>
-  <value code="{{ problem.value.code }}" codeSystem="{{ codeSystems[problem.value.codeSystemName|trim] }}"
-    codeSystemName="{{ problem.value.codeSystemName }}" displayName="{{ problem.value.displayName }}"
-    {% if problem.sdtc -%}
-    sdtc:valueSet="{{ problem.sdtc.valueSet }}" sdtc:valueSetVersion="{{ problem.sdtc.valueSetVersion }}"
-    {% endif -%}
-    xsi:type="CD" />
+  {{- render_value(problem.value) | indent(2, True) }}
 </observation>
 {%- endmacro %}

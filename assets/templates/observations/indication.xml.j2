@@ -1,3 +1,4 @@
+{%- from "components/value.xml.j2" import render_value %}
 {% macro render_indication_obs(indication) %}
 <observation classCode="OBS" moodCode="EVN">
   <!-- [C-CDA R1.1] Indication -->
@@ -8,10 +9,6 @@
   <code code="75323-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
     displayName="Condition" />
   <statusCode code="completed" />
-  <value xsi:type="CD" code="{{ indication.value.code }}" codeSystem="{{ codeSystems[indication.value.codeSystemName|trim] }}"
-    codeSystemName="{{ indication.value.codeSystemName }}" displayName="{{ indication.value.displayName }}"
-    {% if indication.sdtc -%}
-    sdtc:valueSet="{{ indication.sdtc.valueSet }}" sdtc:valueSetVersion="{{ indication.sdtc.valueSetVersion }}"
-    {% endif -%}/>
+  {{- render_value(indication.value) | indent(2, True) }}
 </observation>
 {%- endmacro %}

@@ -1,4 +1,5 @@
 {%- from "components/macros.xml.j2" import format_address, format_telecom, format_name %}
+{%- from "components/value.xml.j2" import render_value %}
         <section>
           <!-- [C-CDA R1.1] Encounters Section (entries optional) -->
           <templateId root="2.16.840.1.113883.10.20.22.2.22" />
@@ -88,6 +89,7 @@
                                         </tr>
                                       </thead>
                                       <tbody>
+                                        {%- for i in range(encounters_diagnosis_repetitions) %}
                                         {%- for diag in sections.encounters.diagnosis %}
                                         <tr ID="{{ diag.ID }}">
                                           <td>Diagnosis</td>
@@ -98,6 +100,7 @@
                                           <td>20250216</td>
                                           <td>Feb 21, 2025</td>
                                         </tr>
+                                        {%- endfor %}
                                         {%- endfor %}
                                       </tbody>
                                     </table>
@@ -190,6 +193,7 @@
                   </assignedPerson>
                 </assignedEntity>
               </performer>
+              {%- for i in range(encounters_diagnosis_repetitions) %}
               {%- for diag in sections.encounters.diagnosis %}
               <!-- Link to Diagnosis -->
               <entryRelationship typeCode="COMP">
@@ -213,14 +217,12 @@
                       <effectiveTime>
                         <low value="20250221" />
                       </effectiveTime>
-                      <value xsi:type="CD" code="{{ diag.code }}" codeSystem="{{ codeSystems[diag.codeSystemName|trim] }}"
-                        codeSystemName="{{ diag.codeSystemName }}"
-                        displayName="{{ diag.displayName }}"
-                        sdtc:valueSet="2.16.840.1.114222.4.11.7508" sdtc:valueSetVersion="20250216" />
+                      {{- render_value(diag) | indent(22, True) }}
                     </observation>
                   </entryRelationship>
                 </act>
               </entryRelationship>
+              {%- endfor %}
               {%- endfor %}
             </encounter>
           </entry>

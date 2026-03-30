@@ -18,6 +18,7 @@
                 </tr>
               </thead>
               <tbody>
+                {%- for i in range(medications_administered_repetitions) %}
                 {% for medication_activity in sections.medications_administered -%}
                 <tr ID="id_{{ loop.index }}_ref">
                   <td>{{ medication_activity.manufacturedMaterial.displayName }}</td>
@@ -26,12 +27,15 @@
                   <td>{{ medication_activity.route.displayName }}</td>
                 </tr>
                 {%- endfor %}
+                {%- endfor %}
               </tbody>
             </table>
           </text>
-          {%- for medication_activity in sections.medications_administered -%}
+          {%- for i in range(medications_administered_repetitions) %}
+          {%- for medication_activity in sections.medications_administered %}
           <entry typeCode="DRIV">
-          {{ render_medication_activity(medication_activity) | indent(12, True) }}
+          {{- render_medication_activity(medication_activity) | indent(12, True) }}
           </entry>
+          {%- endfor %}
           {%- endfor %}
         </section>

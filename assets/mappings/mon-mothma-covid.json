@@ -51,7 +51,6 @@
     "name": "Grand Republic Medical Facility Clinic"
   },
   "provider": {
-    "id": "1234567890",
     "name": {
       "prefix": "Dr",
       "given": "Royce",
@@ -205,10 +204,6 @@
             "code": "186747009",
             "codeSystemName": "SNOMED-CT",
             "displayName": "Coronavirus infection (disorder)"
-          },
-          "sdtc": {
-            "valueSet": "2.16.840.1.114222.4.11.7508",
-            "valueSetVersion": "20250216"
           }
         },
         {
@@ -219,10 +214,6 @@
             "code": "840539006",
             "codeSystemName": "SNOMED-CT",
             "displayName": "Disease caused by severe acute respiratory syndrome coronavirus 2 (disorder)"
-          },
-          "sdtc": {
-            "valueSet": "2.16.840.1.114222.4.11.7508",
-            "valueSetVersion": "20250216"
           }
         },
         {
@@ -233,10 +224,6 @@
             "code": "719865001",
             "codeSystemName": "SNOMED-CT",
             "displayName": "Influenza A virus infection (disorder)"
-          },
-          "sdtc": {
-            "valueSet": "2.16.840.1.114222.4.11.7508",
-            "valueSetVersion": "20250216"
           }
         }
       ]
@@ -285,10 +272,6 @@
               "code": "260373001",
               "codeSystemName": "SNOMED-CT",
               "displayName": "Detected (qualifier value)"
-            },
-            "sdtc": {
-              "valueSet": "2.16.840.1.114222.4.11.7508",
-              "valueSetVersion": "20250216"
             }
           }
         ]
@@ -449,10 +432,6 @@
             "code": "24",
             "codeSystemName": "CVX",
             "displayName": "anthrax vaccine"
-          },
-          "sdtc": {
-            "valueSet": "2.16.840.1.114222.4.11.7508",
-            "valueSetVersion": "2020-11-13"
           }
         }
       ],
@@ -479,21 +458,13 @@
           "type": "observations/planned",
           "code": "94500-6",
           "codeSystemName": "LOINC",
-          "displayName": "SARS-CoV-2 (COVID-19) RNA panel - Respiratory specimen by NAA with probe detection",
-          "sdtc": {
-            "valueSet": "2.16.840.1.114222.4.11.7508",
-            "valueSetVersion": "20250216"
-          }
+          "displayName": "SARS-CoV-2 (COVID-19) RNA panel - Respiratory specimen by NAA with probe detection"
         },
         {
           "type": "observations/planned",
           "code": "25836-8",
           "codeSystemName": "LOINC",
-          "displayName": "Influenza virus A RNA panel",
-          "sdtc": {
-            "valueSet": "2.16.840.1.114222.4.11.7508",
-            "valueSetVersion": "20250216"
-          }
+          "displayName": "Influenza virus A RNA panel"
         },
         {
           "type": "activities/medication-activity",

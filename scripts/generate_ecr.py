@@ -32,12 +32,31 @@ with open(json_path) as f:
     data = json.load(f)
 
 # Set globals from data
+env.globals['codeSystems'] = data["codeSystems"]
+
+env.globals['lab_results_repetitions'] = 1
+env.globals['encounters_diagnosis_repetitions'] = 1
+env.globals['history_of_present_illness_repetitions'] = 1
+env.globals['problems_obs_repetitions'] = 1
+env.globals['medications_administered_repetitions'] = 1
+env.globals['immunization_activities_repetitions'] = 1
+env.globals['plan_of_treatment_repetitions'] = 1
+
 if 'config' in data :
   if 'lab_results_repetitions' in data['config']:
     env.globals['lab_results_repetitions'] = data['config']['lab_results_repetitions']
-else :
-  env.globals['lab_results_repetitions'] = 1
-env.globals['codeSystems'] = data["codeSystems"]
+  if 'encounters_diagnosis_repetitions' in data['config']:
+    env.globals['encounters_diagnosis_repetitions'] = data['config']['encounters_diagnosis_repetitions']
+  if 'history_of_present_illness_repetitions' in data['config']:
+    env.globals['history_of_present_illness_repetitions'] = data['config']['history_of_present_illness_repetitions']
+  if 'problems_obs_repetitions' in data['config']:
+    env.globals['problems_obs_repetitions'] = data['config']['problems_obs_repetitions']
+  if 'medications_administered_repetitions' in data['config']:
+    env.globals['medications_administered_repetitions'] = data['config']['medications_administered_repetitions']
+  if 'immunization_activities_repetitions' in data['config']:
+    env.globals['immunization_activities_repetitions'] = data['config']['immunization_activities_repetitions']
+  if 'plan_of_treatment_repetitions' in data['config']:
+    env.globals['plan_of_treatment_repetitions'] = data['config']['plan_of_treatment_repetitions']
 
 xml_nsmap = {
         None: "urn:hl7-org:v3",

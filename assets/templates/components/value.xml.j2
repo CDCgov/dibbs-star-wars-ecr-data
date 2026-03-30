@@ -2,6 +2,9 @@
 {%- if value.code %}
 <value code="{{ value.code }}" codeSystem="{{ codeSystems[value.codeSystemName|trim] }}"
     codeSystemName="{{ value.codeSystemName }}" displayName="{{ value.displayName }}"
+    {% if value.sdtc -%}
+    sdtc:valueSet="{{ value.sdtc.valueSet }}" sdtc:valueSetVersion="{{ value.sdtc.valueSetVersion }}"
+    {% endif -%}
     xsi:type="CD" />
 {%- elif value.unit and value.value %}
 <value unit="{{ value.unit }}" value="{{ value.value }}" xsi:type="PQ" />

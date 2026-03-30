@@ -28,12 +28,8 @@
       <manufacturedMaterial>
         <code code="{{ medication_activity.manufacturedMaterial.code }}" codeSystem="{{ codeSystems[medication_activity.manufacturedMaterial.codeSystemName|trim] }}"
           codeSystemName="{{ medication_activity.manufacturedMaterial.codeSystemName }}"
-          displayName="{{ medication_activity.manufacturedMaterial.displayName }}"
-          {% if medication_activity.sdtc -%}
-          sdtc:valueSet="{{ medication_activity.sdtc.valueSet }}" sdtc:valueSetVersion="{{ medication_activity.sdtc.valueSetVersion }}"
-          {% endif -%}
-          >
-          {% if medication_activity.manufacturedMaterial.originalText -%}
+          displayName="{{ medication_activity.manufacturedMaterial.displayName }}" >
+          {%- if medication_activity.manufacturedMaterial.originalText %}
           <originalText>{{ medication_activity.manufacturedMaterial.originalText }}</originalText>
           {%- endif %}
         </code>

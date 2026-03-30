@@ -5,8 +5,10 @@
             codeSystemName="LOINC" displayName="History of Present Illness" />
           <title>History of Present Illness</title>
           <text mediaType="text/x-hl7-text+xml">
+            {%- for i in range(history_of_present_illness_repetitions) %}
             {%- for entry in sections.history_of_present_illness.entries %}
             <paragraph>{{ entry.text }}</paragraph>
+            {%- endfor %}
             {%- endfor %}
           </text>
         </section>

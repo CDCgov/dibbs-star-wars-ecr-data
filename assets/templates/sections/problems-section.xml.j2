@@ -47,6 +47,7 @@
                             </tr>
                           </thead>
                           <tbody>
+                            {%- for i in range(problems_obs_repetitions) %}
                             {%- for problem in sections.problems.observations %}
                             <tr>
                               <td>{{ problem.displayName }}</td>
@@ -54,14 +55,10 @@
                               <td>02/16/2025</td>
                               <td>{{ problem.value.code }}</td>
                               <td>{{ problem.value.codeSystemName }}</td>
-                              {%- if problem.sdtc %}
-                              <td>{{ problem.sdtc.valueSet }}</td>
-                              <td>{{ problem.sdtc.valueSetVersion }}</td>
-                              {%- else %}
                               <td />
                               <td />
-                              {%- endif %}
                             </tr>
+                            {%- endfor %}
                             {%- endfor %}
                           </tbody>
                         </table>
@@ -84,10 +81,12 @@
               <effectiveTime>
                 <low value="20250216" />
               </effectiveTime>
+              {%- for i in range(problems_obs_repetitions) %}
               {%- for problem in sections.problems.observations %}
               <entryRelationship typeCode="SUBJ">
               {{- render_problem(problem) | indent(16, True) }}
               </entryRelationship>
+              {%- endfor %}
               {%- endfor %}
             </act>
           </entry>

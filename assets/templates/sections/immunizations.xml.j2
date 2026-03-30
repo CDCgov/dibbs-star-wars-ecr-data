@@ -14,11 +14,13 @@
                 </tr>
               </thead>
               <tbody>
+                {%- for i in range(immunization_activities_repetitions) %}
                 {%- for activity in sections.immunizations.activities %}
                 <tr>
                   <td>{{ activity.manufacturedMaterial.displayName }}</td>
                   <td>NOV 11, 2020</td>
                 </tr>
+                {%- endfor %}
                 {%- endfor %}
               </tbody>
             </table>
@@ -60,8 +62,10 @@
               </tbody>
             </table>
           </text>
+          {%- for i in range(immunization_activities_repetitions) %}
           {%- for activity in sections.immunizations.activities -%}
           {{ render_immunization_activity(activity) | indent(10, True) }}
+          {%- endfor %}
           {%- endfor %}
           <entry typeCode="DRIV">
             <observation classCode="OBS" moodCode="EVN">

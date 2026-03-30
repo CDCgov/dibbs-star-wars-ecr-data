@@ -59,13 +59,8 @@
                             {%- if component.type == "observations/result" %}
                             <tr>
                               <td>{{ component.displayName }}</td>
-                              {%- if component.sdtc %}
-                              <td>{{ component.sdtc.valueSet }}</td>
-                              <td>{{ component.sdtc.valueSetVersion }}</td>
-                              {%- else %}
                               <td />
                               <td />
-                              {%- endif %}
                               <td>{{ component.value.displayName }}</td>
                               {%- if component.interpretationCode %}
                               <td>{{ component.interpretationCode.displayName }}</td>

@@ -11,9 +11,6 @@
   <id root="{{ uuid() }}" />
   <code code="{{ result.code }}" codeSystem="{{ codeSystems[result.codeSystemName|trim] }}"
     codeSystemName="{{ result.codeSystemName }}" displayName="{{ result.displayName }}"
-    {% if result.sdtc -%}
-    sdtc:valueSet="{{ result.sdtc.valueSet }}" sdtc:valueSetVersion="{{ result.sdtc.valueSetVersion }}"
-    {% endif -%}
     xsi:type="CD" />
   <statusCode code="completed" />
   <effectiveTime value="20250221" />

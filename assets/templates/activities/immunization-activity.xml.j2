@@ -34,11 +34,7 @@
               {%- else -%}
               codeSystem="2.16.840.1.113883.12.292"
               {%- endif %}
-              displayName="{{ immunization_activity.manufacturedMaterial.displayName }}"
-              {% if immunization_activity.sdtc -%}
-              sdtc:valueSet="{{ immunization_activity.sdtc.valueSet }}" sdtc:valueSetVersion="{{ immunization_activity.sdtc.valueSetVersion }}"
-              {% endif -%}
-          />
+              displayName="{{ immunization_activity.manufacturedMaterial.displayName }}" />
           <lotNumberText nullFlavor="NI" />
         </manufacturedMaterial>
       </manufacturedProduct>

@@ -1,13 +1,19 @@
 {
   "config": {
-    "lab_results_repetitions": 2
+    "lab_results_repetitions": 100,
+    "encounters_diagnosis_repetitions": 100,
+    "history_of_present_illness_repetitions": 100,
+    "problems_obs_repetitions": 100,
+    "medications_administered_repetitions": 100,
+    "immunization_activities_repetitions": 100,
+    "plan_of_treatment_repetitions": 100
   },
   "base": {
     "setId": {
       "extension": "8d86218e-0fea-11eb-8216-a80388425cfb",
       "root": "1.2.840.114350.1.13.380.3.7.1.1"
     },
-    "version": 4
+    "version": 5
   },
   "codeSystems": {
     "LOINC": "2.16.840.1.113883.6.1",
@@ -54,7 +60,6 @@
     "name": "Grand Republic Medical Facility Clinic"
   },
   "provider": {
-    "id": "1234567890",
     "name": {
       "prefix": "Dr",
       "given": "Royce",
@@ -208,10 +213,6 @@
             "code": "186747009",
             "codeSystemName": "SNOMED-CT",
             "displayName": "Coronavirus infection (disorder)"
-          },
-          "sdtc": {
-            "valueSet": "2.16.840.1.114222.4.11.7508",
-            "valueSetVersion": "20250216"
           }
         },
         {
@@ -222,10 +223,6 @@
             "code": "840539006",
             "codeSystemName": "SNOMED-CT",
             "displayName": "Disease caused by severe acute respiratory syndrome coronavirus 2 (disorder)"
-          },
-          "sdtc": {
-            "valueSet": "2.16.840.1.114222.4.11.7508",
-            "valueSetVersion": "20250216"
           }
         },
         {
@@ -236,10 +233,6 @@
             "code": "719865001",
             "codeSystemName": "SNOMED-CT",
             "displayName": "Influenza A virus infection (disorder)"
-          },
-          "sdtc": {
-            "valueSet": "2.16.840.1.114222.4.11.7508",
-            "valueSetVersion": "20250216"
           }
         }
       ]
@@ -288,10 +281,6 @@
               "code": "260373001",
               "codeSystemName": "SNOMED-CT",
               "displayName": "Detected (qualifier value)"
-            },
-            "sdtc": {
-              "valueSet": "2.16.840.1.114222.4.11.7508",
-              "valueSetVersion": "20250216"
             }
           }
         ]
@@ -452,10 +441,6 @@
             "code": "24",
             "codeSystemName": "CVX",
             "displayName": "anthrax vaccine"
-          },
-          "sdtc": {
-            "valueSet": "2.16.840.1.114222.4.11.7508",
-            "valueSetVersion": "2020-11-13"
           }
         }
       ],
@@ -482,21 +467,13 @@
           "type": "observations/planned",
           "code": "94500-6",
           "codeSystemName": "LOINC",
-          "displayName": "SARS-CoV-2 (COVID-19) RNA panel - Respiratory specimen by NAA with probe detection",
-          "sdtc": {
-            "valueSet": "2.16.840.1.114222.4.11.7508",
-            "valueSetVersion": "20250216"
-          }
+          "displayName": "SARS-CoV-2 (COVID-19) RNA panel - Respiratory specimen by NAA with probe detection"
         },
         {
           "type": "observations/planned",
           "code": "25836-8",
           "codeSystemName": "LOINC",
-          "displayName": "Influenza virus A RNA panel",
-          "sdtc": {
-            "valueSet": "2.16.840.1.114222.4.11.7508",
-            "valueSetVersion": "20250216"
-          }
+          "displayName": "Influenza virus A RNA panel"
         },
         {
           "type": "activities/medication-activity",

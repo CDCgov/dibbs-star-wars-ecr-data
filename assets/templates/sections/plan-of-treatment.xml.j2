@@ -24,22 +24,19 @@
                 </tr>
               </thead>
               <tbody>
+                {%- for i in range(plan_of_treatment_repetitions) %}
                 {%- for entry in sections.plan_of_treatment.entries %}
                 {%- if entry.type == "observations/planned" %}
                 <tr>
                   <td>{{ entry.displayName }}</td>
                   <td>{{ entry.code }}</td>
                   <td>{{ entry.codeSystemName }}</td>
-                  {%- if entry.sdtc %}
-                  <td>{{ entry.sdtc.valueSet }}</td>
-                  <td>{{ entry.sdtc.valueSetVersion }}</td>
-                  {%- else %}
                   <td/>
                   <td/>
-                  {%- endif %}
                   <td>02/17/2025</td>
                 </tr>
                 {%- endif %}
+                {%- endfor %}
                 {%- endfor %}
               </tbody>
             </table>
@@ -62,6 +59,7 @@
               {%- endfor %}
             </list>
           </text>
+          {%- for i in range(plan_of_treatment_repetitions) %}
           {%- for entry in sections.plan_of_treatment.entries %}
           <entry typeCode="DRIV">
           {%- if entry.type == "observations/planned" -%}
@@ -72,5 +70,6 @@
           {{ render_planned_encounter(entry) | indent(12, True) }}
           {%- endif %}
           </entry>
+          {%- endfor %}
           {%- endfor %}
         </section>
