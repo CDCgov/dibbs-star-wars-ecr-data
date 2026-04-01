@@ -68,6 +68,7 @@ be much easier to update than editing an ECR xml directly so please keep this in
   - Sections that still need to be templated
   - Initial Case Report Trigger Code template ids
   - Travel History needs to be an array of data
+  - Fix old unit tests
 
 ## Standard Notices
 

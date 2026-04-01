@@ -69,9 +69,8 @@ xml_nsmap = {
 # Render the template with your data
 rendered_xml = template.render(data, nsmap=xml_nsmap)
 
-# Save the output to a new XML file - TODO: re-enabled timestamped filenames
-#output_filename = mapping_file.replace(".json", "-"+generate_timestamp(None, True)+".xml")
-output_filename = mapping_file.replace(".json", ".xml")
+# Save the output to a new XML file
+output_filename = mapping_file.replace(".json", "-"+generate_timestamp(None, True)+".xml")
 with open(output_filename, "w", encoding="utf-8") as f:
     f.write(rendered_xml)
 
