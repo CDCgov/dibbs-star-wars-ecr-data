@@ -69,6 +69,8 @@
               </tbody>
             </table>
           </text>
+          {%- for i in range(problems_obs_repetitions) %}
+          {%- for problem in sections.problems.observations %}
           <entry typeCode="DRIV">
             <act classCode="ACT" moodCode="EVN">
               <!-- [C-CDA 1.1] Problem Concern Act -->
@@ -81,13 +83,11 @@
               <effectiveTime>
                 <low value="20250216" />
               </effectiveTime>
-              {%- for i in range(problems_obs_repetitions) %}
-              {%- for problem in sections.problems.observations %}
               <entryRelationship typeCode="SUBJ">
               {{- render_problem(problem) | indent(16, True) }}
               </entryRelationship>
-              {%- endfor %}
-              {%- endfor %}
             </act>
           </entry>
+          {%- endfor %}
+          {%- endfor %}
         </section>
