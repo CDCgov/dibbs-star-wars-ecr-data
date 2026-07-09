@@ -1,0 +1,231 @@
+{#- TODO: This section needs to be templated #}
+        <section>
+          <!-- Procedures Section (entries required) (V2) -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.7.1" extension="2014-06-09" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.7.1" />
+          <code code="47519-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
+            displayName="History of Procedures" />
+          <title>Procedures</title>
+          <text>
+            <table border="1" width="100%">
+              <thead>
+                <tr>
+                  <th>Procedure</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Colonic polypectomy</td>
+                  <td>November 15, 2020</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <!-- Examples of the same procedure are shown in different procedure entries -->
+          <entry typeCode="DRIV">
+            <procedure classCode="PROC" moodCode="EVN">
+              <!-- [C-CDA R2.1] Procedure Activity Procedure (V2) -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.14"
+                extension="2014-06-09" />
+              <templateId root="2.16.840.1.113883.10.20.22.4.14" />
+              <id root="d68b7e32-7810-4f5b-9cc2-acd54b0fd85d" />
+              <code code="73761001" codeSystem="2.16.840.1.113883.6.96"
+                codeSystemName="SNOMED CT" displayName="Colonoscopy" />
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="202011151110" />
+                <high value="202011151514" />
+              </effectiveTime>
+              <specimen typeCode="SPC">
+                <specimenRole classCode="SPEC">
+                  <id root="b6d7b927-2b70-43c7-bdf3-0e7c4133062d" />
+                  <specimenPlayingEntity>
+                    <code code="309266009" codeSystem="2.16.840.1.113883.6.96"
+                      displayName="anal polyp" />
+                  </specimenPlayingEntity>
+                </specimenRole>
+              </specimen>
+              <specimen typeCode="SPC">
+                <specimenRole classCode="SPEC">
+                  <id root="a6d7b927-2b70-43c7-bdf3-0e7c4133062c" />
+                  <specimenPlayingEntity>
+                    <code code="57259009" codeSystem="2.16.840.1.113883.6.96"
+                      displayName="bile duct" />
+                  </specimenPlayingEntity>
+                </specimenRole>
+              </specimen>
+              <participant typeCode="DEV">
+                <participantRole classCode="MANU">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.37" />
+                  <id root="2.16.840.1.113883.3.3719"
+                    extension="(01)51022222233336(11)141231(17)150707(10)A213B1(21)1234"
+                    assigningAuthorityName="FDA" />
+                  <playingDevice>
+                    <code code="90412006" codeSystem="2.16.840.1.113883.6.96"
+                      displayName="Colonoscope" />
+                  </playingDevice>
+                  <scopingEntity>
+                    <id root="2.16.840.1.113883.3.3719" />
+                  </scopingEntity>
+                </participantRole>
+              </participant>
+              <participant typeCode="LOC">
+                <participantRole classCode="SDLOC">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.32" />
+                  <code code="1160-1" codeSystem="2.16.840.1.113883.6.259"
+                    codeSystemName="HealthcareServiceLocation"
+                    displayName="Community Health and Hospitals" />
+                  <addr>
+                    <streetAddressLine>1002 Healthcare Drive</streetAddressLine>
+                    <city>Ann Arbor</city>
+                    <state>MI</state>
+                    <postalCode>99999</postalCode>
+                    <country>US</country>
+                  </addr>
+                  <telecom use="WP" value="tel:+1(555)555-5000" />
+                  <playingEntity classCode="PLC">
+                    <name>Community Health and Hospitals</name>
+                  </playingEntity>
+                </participantRole>
+              </participant>
+              <entryRelationship typeCode="COMP">
+                <substanceAdministration classCode="SBADM" moodCode="EVN">
+                  <!-- ** Medication Activity (V2) ** -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.16"
+                    extension="2014-06-09" />
+                  <id root="6c844c75-aa34-411c-b7bd-5e4a9f206e29" />
+                  <statusCode code="active" />
+                  <effectiveTime xsi:type="IVL_TS">
+                    <low value="20120318" />
+                  </effectiveTime>
+                  <effectiveTime xsi:type="PIVL_TS" institutionSpecified="true"
+                    operator="A">
+                    <period value="12" unit="h" />
+                  </effectiveTime>
+                  <routeCode code="C38288"
+                    codeSystem="2.16.840.1.113883.3.26.1.1"
+                    codeSystemName="NCI Thesaurus"
+                    displayName="ORAL" />
+                  <doseQuantity value="1" />
+                  <consumable>
+                    <manufacturedProduct classCode="MANU">
+                      <!-- ** Medication information ** -->
+                      <templateId root="2.16.840.1.113883.10.20.22.4.23"
+                        extension="2014-06-09" />
+                      <id root="2a620155-9d11-439e-92b3-5d9815ff4ee8" />
+                      <manufacturedMaterial>
+                        <code code="197380"
+                          displayName="Atenolol 25 MG Oral Tablet"
+                          codeSystem="2.16.840.1.113883.6.88"
+                          codeSystemName="RxNorm" />
+                      </manufacturedMaterial>
+                    </manufacturedProduct>
+                  </consumable>
+                  <entryRelationship typeCode="RSON">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <!-- ** Indication ** -->
+                      <templateId root="2.16.840.1.113883.10.20.22.4.19"
+                        extension="2014-06-09" />
+                      <id root="e63166c7-6482-4a44-83a1-37ccdbde725b" />
+                      <code code="75321-0"
+                        codeSystem="2.16.840.1.113883.6.1"
+                        codeSystemName="LOINC"
+                        displayName="Clinical finding" />
+                      <statusCode code="completed" />
+                      <value xsi:type="CD"
+                        code="38341003"
+                        displayName="Hypertension"
+                        codeSystem="2.16.840.1.113883.6.96" />
+                    </observation>
+                  </entryRelationship>
+                </substanceAdministration>
+              </entryRelationship>
+            </procedure>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <!-- [C-CDA R2.1] Procedure Activity Observation (V2) -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.13"
+                extension="2014-06-09" />
+              <templateId root="2.16.840.1.113883.10.20.22.4.13" />
+              <id root="6dab0739-749d-4c62-8f5e-eea77a045ce8" />
+              <code code="274025005" codeSystem="2.16.840.1.113883.6.96"
+                displayName="Colonic polypectomy" codeSystemName="SNOMED CT" />
+              <statusCode code="completed" />
+              <effectiveTime value="20201115" />
+              <value xsi:type="CD" nullFlavor="NA" />
+              <targetSiteCode code="416949008" codeSystem="2.16.840.1.113883.6.96"
+                codeSystemName="SNOMED CT" displayName="Abdomen and pelvis" />
+            </observation>
+          </entry>
+          <!-- Trigger Template: Transmission based precautions: Extracorporeal membrane
+          oxygenation (procedure) -->
+          <!-- This is an example code: at the time of publication, no RCTC value set
+          exists for procedures -->
+          <entry>
+            <procedure classCode="PROC" moodCode="EVN">
+              <!-- [C-CDA R2.1] Procedure Activity Procedure (V2) -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.14"
+                extension="2014-06-09" />
+              <!-- [eICR R2 STU3] Initial Case Report Trigger Code Procedure Activity
+              Procedure -->
+              <templateId root="2.16.840.1.113883.10.20.15.2.3.44"
+                extension="2021-01-01" />
+              <id root="609a7b3b-3bd1-4e83-b621-c4afe4a90cd7" />
+              <code code="233573008" codeSystem="2.16.840.1.113883.6.96"
+                codeSystemName="SNOMED CT"
+                displayName="Extracorporeal membrane oxygenation (procedure)"
+                sdtc:valueSet="2.16.840.1.114222.4.11.7508"
+                sdtc:valueSetVersion="2020-11-13" />
+              <statusCode code="completed" />
+              <effectiveTime value="20201115" />
+            </procedure>
+          </entry>
+          <!-- Trigger Template: Transmission based precautions: Airborn precautions
+          (procedure) -->
+          <!-- This is an example code: at the time of publication, no RCTC value set
+          exists for procedures -->
+          <entry>
+            <act classCode="ACT" moodCode="EVN">
+              <!-- [C-CDA R2.1] Procedure Activity Act (V2) -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.12"
+                extension="2014-06-09" />
+              <!-- [eICR R2 STU3] Initial Case Report Trigger Code Procedure Activity
+              Act -->
+              <templateId root="2.16.840.1.113883.10.20.15.2.3.45"
+                extension="2021-01-01" />
+              <id root="941aee94-1f69-4fa8-91c8-7eee00915728" />
+              <code code="409524006" codeSystem="2.16.840.1.113883.6.96"
+                codeSystemName="SNOMED CT"
+                displayName="Airborn precautions (procedure)"
+                sdtc:valueSet="2.16.840.1.114222.4.11.7508"
+                sdtc:valueSetVersion="2020-11-13" />
+              <statusCode code="completed" />
+              <effectiveTime value="20201115" />
+            </act>
+          </entry>
+          <!-- Trigger Template: Ventilator care and adjustment -->
+          <!-- This is an example code: at the time of publication, no RCTC value set
+          exists for procedures -->
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <!-- [C-CDA R2.1] Procedure Activity Observation (V2) -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.13"
+                extension="2014-06-09" />
+              <!-- [eICR R2 STU3] Initial Case Report Trigger Code Procedure Activity
+              Observation -->
+              <templateId root="2.16.840.1.113883.10.20.15.2.3.46"
+                extension="2021-01-01" />
+              <id root="e535eb92-829f-45bb-8602-a49f59bb4e2c" />
+              <code code="385857005" codeSystem="2.16.840.1.113883.6.96"
+                codeSystemName="SNOMED CT"
+                displayName="Ventilator care and adjustment (regime/therapy)"
+                sdtc:valueSet="2.16.840.1.114222.4.11.7508"
+                sdtc:valueSetVersion="2020-11-13" />
+              <statusCode code="completed" />
+              <effectiveTime value="20201115" />
+              <value xsi:type="CD" nullFlavor="NA" />
+            </observation>
+          </entry>
+        </section>

@@ -1,0 +1,24 @@
+{%- from "components/value.xml.j2" import render_value %}
+{% macro render_problem(problem) %}
+<!-- Problem Observation -->
+<observation classCode="OBS" moodCode="EVN" negationInd="false">
+  <!-- [C-CDA R1.1] Problem Observation -->
+  <templateId root="2.16.840.1.113883.10.20.22.4.4" />
+  <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.4" />
+  {# (TODO: is this line and the one below needed?) <!-- [eICR R2 STU1.1] Initial Case Report Trigger Code Problem Observation --> -#}
+  {# <templateId extension="2016-12-01" root="2.16.840.1.113883.10.20.15.2.3.3" /> -#}
+  <id root="{{ uuid() }}" />
+  <code code="{{ problem.code }}" codeSystem="{{ codeSystems[problem.codeSystemName|trim] }}" codeSystemName="{{ problem.codeSystemName }}"
+    displayName="{{ problem.displayName }}">
+    {%- if problem.translation %}
+    <translation code="{{ problem.translation.code }}" codeSystem="{{ codeSystems[problem.translation.codeSystemName|trim] }}"
+      codeSystemName="{{ problem.translation.codeSystemName }}" displayName="{{ problem.translation.displayName }}" />
+    {%- endif %}
+  </code>
+  <statusCode code="completed" />
+  <effectiveTime>
+    <low value="20250216" />
+  </effectiveTime>
+  {{- render_value(problem.value) | indent(2, True) }}
+</observation>
+{%- endmacro %}

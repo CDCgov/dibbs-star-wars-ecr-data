@@ -1,0 +1,229 @@
+{%- from "components/macros.xml.j2" import format_address, format_telecom, format_name %}
+{%- from "components/value.xml.j2" import render_value %}
+        <section>
+          <!-- [C-CDA R1.1] Encounters Section (entries optional) -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.22" />
+          <!-- [C-CDA R2.1] Encounters Section (entries optional) (V3) -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.22" extension="2015-08-01" />
+          <!-- [C-CDA R1.1] Encounters Section (entries required) -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.22.1" />
+          <!-- [C-CDA R2.1] Encounters Section (entries required) (V3) -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.22.1" extension="2015-08-01" />
+          <code code="46240-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
+            displayName="History of encounters" />
+          <title>Encounters</title>
+          <text>
+            <table>
+              <thead>
+                <tr>
+                  <th>Encounter</th>
+                  <th>Date(s)</th>
+                  <th>Location</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Initial Visit -->
+                <tr ID="encounter_20250216_ref">
+                  <td>Office outpatient visit 15 minutes</td>
+                  <td>Feb 16, 2025</td>
+                  <td>
+                    <list styleCode="none">
+                      <item>
+                        <content styleCode="Italics">{{ facility.name }}</content>
+                      </item>
+                    </list>
+                  </td>
+                </tr>
+                <!-- Follow-up Visit -->
+                <tr ID="encounter_20250217_ref">
+                  <td>Office outpatient visit - followup</td>
+                  <td>Feb 17, 2025</td>
+                  <td>
+                    <list styleCode="none">
+                      <item>
+                        <content styleCode="Italics">{{ facility.name }}</content>
+                      </item>
+                    </list>
+                  </td>
+                </tr>
+                <!-- Results Visit with Diagnoses -->
+                <tr ID="encounter_20250221_ref">
+                  <td>Office outpatient visit - results review</td>
+                  <td>Feb 21, 2025</td>
+                  <td>
+                    <list styleCode="none">
+                      <item>
+                        <content styleCode="Italics">{{ facility.name }}</content>
+                      </item>
+                    </list>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="20">
+                    <list styleCode="none">
+                      <item>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Encounter Diagnosis Type</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Diagnosis</td>
+                            </tr>
+                            <tr>
+                              <td colspan="20">
+                                <list styleCode="none">
+                                  <item>
+                                    <table>
+                                      <thead>
+                                        <tr>
+                                          <th>Initial Case Report Trigger Code Problem Observation</th>
+                                          <th>Problem</th>
+                                          <th>Trigger Code</th>
+                                          <th>Trigger Code codeSystem</th>
+                                          <th>RCTC OID</th>
+                                          <th>RCTC Version</th>
+                                          <th>Date(s)</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        {%- for i in range(encounters_diagnosis_repetitions) %}
+                                        {%- for diag in sections.encounters.diagnosis %}
+                                        <tr ID="{{ diag.ID }}">
+                                          <td>Diagnosis</td>
+                                          <td>{{ diag.displayName }}</td>
+                                          <td>{{ diag.code }}</td>
+                                          <td>{{ diag.codeSystemName }}</td>
+                                          <td>2.16.840.1.114222.4.11.7508</td>
+                                          <td>20250216</td>
+                                          <td>Feb 21, 2025</td>
+                                        </tr>
+                                        {%- endfor %}
+                                        {%- endfor %}
+                                      </tbody>
+                                    </table>
+                                  </item>
+                                </list>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </item>
+                    </list>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <!-- Initial Visit Entry -->
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" extension="2015-08-01" />
+              <id root="d4994d30-b5a0-4526-a512-d8d7a5c7c1f3" />
+              <code code="99213" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT-4"
+                displayName="Office outpatient visit 15 minutes" />
+              <effectiveTime value="20250216" />
+              <participant typeCode="LOC">
+                <participantRole classCode="SDLOC">
+                  <code code="1160-1" codeSystem="2.16.840.1.113883.1.11.20275"
+                    codeSystemName="HealthcareServiceLocation"
+                    displayName="{{ facility.name }}" />
+                </participantRole>
+              </participant>
+              <performer>
+                <assignedEntity>
+                  <id extension="1234567890" root="2.16.840.1.113883.4.6" />
+                  <assignedPerson>
+                    {{- format_name(provider.name) | indent(20, True) }}
+                  </assignedPerson>
+                </assignedEntity>
+              </performer>
+            </encounter>
+          </entry>
+          <!-- Follow-up Visit Entry -->
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" extension="2015-08-01" />
+              <id root="c7a76229-eda1-4948-9332-05416f11a457" />
+              <code code="99213" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT-4"
+                displayName="Office outpatient visit - followup" />
+              <effectiveTime value="20250217" />
+              <participant typeCode="LOC">
+                <participantRole classCode="SDLOC">
+                  <code code="1160-1" codeSystem="2.16.840.1.113883.1.11.20275"
+                    codeSystemName="HealthcareServiceLocation"
+                    displayName="{{ facility.name }}" />
+                </participantRole>
+              </participant>
+              <performer>
+                <assignedEntity>
+                  <id extension="1234567890" root="2.16.840.1.113883.4.6" />
+                  <assignedPerson>
+                    {{- format_name(provider.name) | indent(20, True) }}
+                  </assignedPerson>
+                </assignedEntity>
+              </performer>
+            </encounter>
+          </entry>
+          <!-- Results Visit with Diagnoses -->
+          <entry typeCode="DRIV">
+            <encounter classCode="ENC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" extension="2015-08-01" />
+              <id root="6e12d84f-9e8a-45cb-b1d7-f43a72a86cc5" />
+              <code code="99212" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT-4"
+                displayName="Office outpatient visit - results review" />
+              <effectiveTime value="20250221" />
+              <participant typeCode="LOC">
+                <participantRole classCode="SDLOC">
+                  <code code="1160-1" codeSystem="2.16.840.1.113883.1.11.20275"
+                    codeSystemName="HealthcareServiceLocation"
+                    displayName="{{ facility.name }}" />
+                </participantRole>
+              </participant>
+              <performer>
+                <assignedEntity>
+                  <id extension="1234567890" root="2.16.840.1.113883.4.6" />
+                  <assignedPerson>
+                    {{- format_name(provider.name) | indent(20, True) }}
+                  </assignedPerson>
+                </assignedEntity>
+              </performer>
+              {%- for i in range(encounters_diagnosis_repetitions) %}
+              {%- for diag in sections.encounters.diagnosis %}
+              <!-- Link to Diagnosis -->
+              <entryRelationship typeCode="COMP">
+                <act classCode="ACT" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.80" />
+                  <templateId root="2.16.840.1.113883.10.20.22.4.80" extension="2015-08-01" />
+                  <code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
+                    displayName="Diagnosis" />
+                  <entryRelationship typeCode="SUBJ">
+                    <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.4" />
+                      <templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2015-08-01" />
+                      <templateId root="2.16.840.1.113883.10.20.15.2.3.3" extension="2016-12-01" />
+                      <id root="{{ uuid() }}" />
+                      <code code="75323-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
+                        displayName="Condition">
+                        <translation code="282291009" codeSystem="2.16.840.1.113883.6.96"
+                          codeSystemName="SNOMED CT" displayName="Diagnosis" />
+                      </code>
+                      <statusCode code="completed" />
+                      <effectiveTime>
+                        <low value="20250221" />
+                      </effectiveTime>
+                      {{- render_value(diag) | indent(22, True) }}
+                    </observation>
+                  </entryRelationship>
+                </act>
+              </entryRelationship>
+              {%- endfor %}
+              {%- endfor %}
+            </encounter>
+          </entry>
+        </section>

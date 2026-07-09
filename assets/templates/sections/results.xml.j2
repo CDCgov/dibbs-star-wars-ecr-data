@@ -1,0 +1,126 @@
+{%- from "observations/result.xml.j2" import render_result_obs %}
+{%- from "observations/lab-result-status.xml.j2" import render_lab_result_status_obs %}
+{%- from "procedures/specimen-collection.xml.j2" import render_specimen_collection_proc %}
+        <section>
+          <!-- [C-CDA R1.1] Results Section (entries optional) -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.3" />
+          <!-- [C-CDA R2.1] Results Section (entries optional) (V3) -->
+          <templateId extension="2015-08-01"
+            root="2.16.840.1.113883.10.20.22.2.3" />
+          <!-- [C-CDA R1.1] Results Section (entries required) -->
+          <templateId
+            root="2.16.840.1.113883.10.20.22.2.3.1" />
+          <!-- [C-CDA R2.1] Results Section (entries required) (V3) -->
+          <templateId extension="2015-08-01"
+            root="2.16.840.1.113883.10.20.22.2.3.1" />
+          <code code="30954-2"
+            codeSystem="2.16.840.1.113883.6.1"
+            codeSystemName="LOINC"
+            displayName="Relevant diagnostic tests and/or laboratory data" />
+          <title>Results</title>
+          <text>
+            <table>
+              <thead>
+                <tr>
+                  <th>Results Panel</th>
+                  <th>Date(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {%- for i in range(lab_results_repetitions) %}
+                {%- for result in sections.results %}
+                <tr>
+                  <td>{{ result.displayName }}</td>
+                  <td />
+                </tr>
+                <tr>
+                  <td>
+                    <list>
+                      <item>
+                        <paragraph>*** In the table below, row entries with values under RCTC
+                          columns triggered this
+                          Electronic Initial Case Report (eICR)</paragraph>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Test</th>
+                              <th>Lab Test RCTC OID ***</th>
+                              <th>Lab Test RCTC Version ***</th>
+                              <th>Outcome</th>
+                              <th>Interpretation</th>
+                              <th>Date(s)</th>
+                              <th>Reference Range</th>
+                              <th>Reference Range Interpretation</th>
+                              <th>Reference Range Description</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {%- for component in result.components %}
+                            {%- if component.type == "observations/result" %}
+                            <tr>
+                              <td>{{ component.displayName }}</td>
+                              <td />
+                              <td />
+                              <td>{{ component.value.displayName }}</td>
+                              {%- if component.interpretationCode %}
+                              <td>{{ component.interpretationCode.displayName }}</td>
+                              {%- else %}
+                              <td/>
+                              {%- endif %}
+                              <td>02/21/2025</td>
+                              {%- if component.referenceRange %}
+                              <td>{{ component.referenceRange.value.displayName }}</td>
+                              <td>{{ component.referenceRange.interpretationCode.displayName }}</td>
+                              <td>{{ component.referenceRange.interpretationCode.displayName }}</td>
+                              {%- else %}
+                              <td />
+                              <td />
+                              <td />
+                              {%- endif %}
+                            </tr>
+                            {%- endif %}
+                            {%- endfor %}
+                          </tbody>
+                        </table>
+                      </item>
+                    </list>
+                  </td>
+                </tr>
+                {%- endfor %}
+                {%- endfor %}
+              </tbody>
+            </table>
+          </text>
+          {%- for i in range(lab_results_repetitions) %}
+          {%- for result in sections.results %}
+          <!-- Test Result Entry -->
+          <entry typeCode="DRIV">
+            <organizer classCode="BATTERY" moodCode="EVN">
+              <!-- [C-CDA R1.1] Result Organizer -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.1" />
+              <!-- [C-CDA R2.1] Result Organizer (V3) -->
+              <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.1" />
+              <id root="{{ uuid() }}" />
+              <code code="{{ result.code }}" codeSystem="{{ codeSystems[result.codeSystemName|trim] }}"
+                codeSystemName="{{ result.codeSystemName }}" displayName="{{ result.displayName }}" />
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20250221" />
+                <high value="20250221" />
+              </effectiveTime>
+                {%- for component in result.components %}
+                <component>
+                {%- if component.type == "observations/result" %}
+                {{- render_result_obs(component) | indent(18, True) }}
+                {%- elif component.type == "observations/lab-result-status" %}
+                {{- render_lab_result_status_obs() | indent(18, True) }}
+                {%- elif component.type == "procedures/specimen-collection" %}
+                {{- render_specimen_collection_proc() | indent(18, True) }}
+                {%- endif %}
+                </component>
+                {%- endfor %}
+            </organizer>
+          </entry>
+          {%- endfor %}
+          {%- endfor %}
+        </section>

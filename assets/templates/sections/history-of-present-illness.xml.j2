@@ -1,0 +1,14 @@
+
+        <section>
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.4" />
+          <code code="10164-2" codeSystem="2.16.840.1.113883.6.1"
+            codeSystemName="LOINC" displayName="History of Present Illness" />
+          <title>History of Present Illness</title>
+          <text mediaType="text/x-hl7-text+xml">
+            {%- for i in range(history_of_present_illness_repetitions) %}
+            {%- for entry in sections.history_of_present_illness.entries %}
+            <paragraph>{{ entry.text }}</paragraph>
+            {%- endfor %}
+            {%- endfor %}
+          </text>
+        </section>

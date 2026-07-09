@@ -1,0 +1,15 @@
+{% macro render_planned_obs(observation) %}
+<observation classCode="OBS" moodCode="RQO">
+  <!-- [C-CDA R1.1] Plan of Care Activity Observation -->
+  <templateId root="2.16.840.1.113883.10.20.22.4.44" />
+  <!-- [C-CDA R2.0] Planned Observation (V2) -->
+  <templateId root="2.16.840.1.113883.10.20.22.4.44" extension="2014-06-09" />
+  {#- (TODO: do we need this?) <!-- [eICR R2 STU1.1] Initial Case Report Trigger Code Lab Test Order --> -#}
+  {#- <templateId root="2.16.840.1.113883.10.20.15.2.3.4" extension="2016-12-01" /> #}
+  <id root="{{ uuid() }}" />
+  <code code="{{ observation.code }}" codeSystem="{{ codeSystems[observation.codeSystemName|trim] }}"
+    codeSystemName="{{ observation.codeSystemName }}" displayName="{{ observation.displayName }}"/>
+  <statusCode code="active" />
+  <effectiveTime value="20250217" />
+</observation>
+{%- endmacro %}

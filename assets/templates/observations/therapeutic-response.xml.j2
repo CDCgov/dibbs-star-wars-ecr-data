@@ -1,0 +1,16 @@
+{%- from "components/value.xml.j2" import render_value %}
+{% macro render_therapeutic_response_obs(observation) %}
+<observation classCode="OBS" moodCode="EVN">
+  <!-- [eICR R2] Therapeutic Medication Response Observation -->
+  <templateId root="2.16.840.1.113883.10.20.15.2.3.37"
+    extension="2019-04-01" />
+  <id root="{{ uuid() }}" />
+  <code code="67540-5" codeSystem="2.16.840.1.113883.6.1"
+    codeSystemName="LOINC" displayName="Response to medication" />
+  <statusCode code="completed" />
+  <effectiveTime>
+    <low value="20201101" />
+  </effectiveTime>
+  {{- render_value(observation.value) | indent(2, True) }}
+</observation>
+{%- endmacro %}

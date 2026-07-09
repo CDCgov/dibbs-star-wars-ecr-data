@@ -1,0 +1,51 @@
+{%- from "components/macros.xml.j2" import format_address, format_telecom, format_name -%}
+  <componentOf>
+    <encompassingEncounter>
+      <!-- encounter ID-->
+      <id extension="9937015" root="2.16.840.1.113883.19" />
+      <code code="AMB" codeSystem="2.16.840.1.113883.5.4"
+        codeSystemName="HL7 ActEncounterCode"
+        displayName="Ambulatory" />
+      <effectiveTime>
+        <low value="20200513" />
+        <high value="20200513" />
+      </effectiveTime>
+      <responsibleParty>
+        <assignedEntity>
+          <!-- Provider ID (NPI) -->
+          <id extension="1234567890" root="2.16.840.1.113883.4.6" />
+          {{- format_address(addresses.person) | indent(10, True) -}}
+          {{- format_telecom(telecom) | indent(10, True) }}
+          <assignedPerson>
+            {{- format_name(provider.name) | indent(12, True) }}
+          </assignedPerson>
+          <representedOrganization>
+            <!-- Represented Organization-->
+            <id extension="1234567893" root="2.16.840.1.113883.4.6" />
+            <!-- Provider Facility/Office Name-->
+            <name>{{ facility.name }}</name>
+            {{- format_address(addresses.organization) | indent(12, True) }}
+          </representedOrganization>
+        </assignedEntity>
+      </responsibleParty>
+      <location>
+        <healthCareFacility>
+          <!-- Facility ID (NPI) -->
+          <id extension="1234567890" root="2.16.840.1.113883.4.6" />
+          <!-- Facility location within larger healthcare organization e.g Kaiser Vacaville within
+          Kaiser North-->
+          <code code="OF" codeSystem="2.16.840.1.113883.5.111"
+            codeSystemName="HL7RoleCode" displayName="Outpatient Facility" />
+          <location>
+            {{- format_address(addresses.organization) | indent(12, True) }}
+          </location>
+          <serviceProviderOrganization>
+            <!-- Provider Facility/Office Name-->
+            <name>{{ facility.name }}</name>
+            {{- format_address(addresses.organization) | indent(12, True) -}}
+            {{- format_telecom(telecom) | indent(12, True) }}
+          </serviceProviderOrganization>
+        </healthCareFacility>
+      </location>
+    </encompassingEncounter>
+  </componentOf>

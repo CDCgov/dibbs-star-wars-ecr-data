@@ -1,0 +1,131 @@
+<ClinicalDocument xmlns="{{ nsmap[None] }}" xmlns:cda="{{ nsmap[None] }}" xmlns:sdtc="{{ nsmap['sdtc'] }}"
+  xmlns:voc="{{ nsmap['voc'] }}"
+  xmlns:xsi="{{ nsmap['xsi'] }}"
+  xsi:schemaLocation="{{ nsmap['schema_location'] }}">
+  <realmCode code="US" />
+  <!-- [C-CDA R1.1] US Realm Header-->
+  <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3" />
+  <!-- [C-CDA R2.1] US Realm Header (V3) -->
+  <templateId root="2.16.840.1.113883.10.20.22.1.1" />
+  <!-- [eICR R2 STU1.1] Initial Public Health Case Report Document (eICR) (V2) -->
+  <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.1.1" />
+  <templateId extension="2016-12-01" root="2.16.840.1.113883.10.20.15.2" />
+  <!-- Globally unique document ID (extension) is scoped by vendor/software-->
+  <id root="{{ uuid() }}" />
+  <!-- Document Code-->
+  <code code="55751-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
+  displayName="Public Health Case Report" />
+  <title>Initial Public Health Case Report</title>
+  <effectiveTime value="{{ timestamp() }}" />
+  <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="Normal" />
+  <languageCode code="en-US" />
+  {%- if base.setId %}
+  <setId extension="{{ base.setId.extension }}"
+  root="{{ base.setId.root }}" />
+  {%- else -%}
+  <setId extension="{{ uuid() }}"
+  root="1.2.840.114350.1.13.380.3.7.1.1" />
+  {%- endif %}
+  {%- if base.version %}
+  <versionNumber value="{{ base.version }}" />
+  {%- else -%}
+  <versionNumber value="1" />
+  {%- endif %}
+
+  <!-- recordTarget: The patient -->
+  {%- include 'components/patient.xml.j2' %}
+
+  <!-- Author/authenticator may be software or may be a provider such as "infection control
+  professional"-->
+  {% include 'components/author.xml.j2' %}
+
+  <!-- Custodian: organization or entity that is responsible for maintaining and safeguarding the
+  document -->
+  {% include 'components/custodian.xml.j2' %}
+
+  <!-- componentOf: contains the encompassingEncouter and the provider and facility information for
+  the case. -->
+  {% include 'components/componentOf.xml.j2' %}
+
+  <!-- first component holds the structuredBody -->
+  <component>
+    <!-- structuredBody contains all of the clinical sections of the eICR -->
+    <structuredBody>
+      <!-- Encounters section -->
+      <component>
+      {%- include 'sections/encounters.xml.j2' %}
+      </component>
+
+      <!-- History of Present Illness Section -->
+      <component>
+      {%- include 'sections/history-of-present-illness.xml.j2' %}
+      </component>
+
+      <!-- Chief Complaint Section -->
+      <component>
+      {%- include 'sections/chief-complaint.xml.j2' %}
+      </component>
+
+      <!-- Reason for visit Section -->
+      <component>
+      {%- include 'sections/reason-for-visit.xml.j2' %}
+      </component>
+
+       <!-- Social History Section -->
+      <component>
+      {%- include 'sections/social-history.xml.j2' %}
+      </component>
+
+      <!-- Problems Section -->
+      <component>
+      {%- include 'sections/problems-section.xml.j2' %}
+      </component>
+
+      <!-- Medications Administered Section -->
+      <component>
+      {%- include 'sections/medications-administered.xml.j2' %}
+      </component>
+
+      <!-- Results Section -->
+      <component>
+      {%- include 'sections/results.xml.j2' %}
+      </component>
+
+      <!-- Immunizations Section -->
+      <component>
+      {%- include 'sections/immunizations.xml.j2' %}
+      </component>
+
+      <!-- Vital Signs Section -->
+      <component>
+      {%- include 'sections/vital-signs.xml.j2' %}
+      </component>
+
+      <!-- Plan of Care/Treatment Section -->
+      <component>
+      {%- include 'sections/plan-of-treatment.xml.j2' %}
+      </component>
+
+      {#- TODO: The sections below have not been fully templated yet #}
+      <!-- Pregnancy Section -->
+      <component>
+      {%- include 'sections/pregnancy.xml.j2' %}
+      </component>
+
+      <!-- Procedures Section -->
+      <component>
+      {%- include 'sections/procedures.xml.j2' %}
+      </component>
+
+      <!-- Emergency Outbreak Information -->
+      <component>
+      {%- include 'sections/emergency-outbreak.xml.j2' %}
+      </component>
+
+      <!-- Reportability Response Information -->
+      <component>
+      {%- include 'sections/reportability-response.xml.j2' %}
+      </component>
+    </structuredBody>
+  </component>
+</ClinicalDocument>

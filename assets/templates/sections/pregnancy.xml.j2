@@ -1,0 +1,314 @@
+{#- TODO: This section needs to be templated #}
+        <section>
+          <!--  [C-CDA PREG] Pregnancy Section -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.80" extension="2020-04-01" />
+          <code code="90767-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
+            displayName="Pregnancy summary Document" />
+          <title>Pregnancy Section</title>
+          <text xmlns:voc="http://www.lantanagroup.com/voc">
+            <table>
+              <thead>
+                <tr>
+                  <th>Pregnancy Status</th>
+                  <th>Date(s) over which status holds <br /> (if no high date,
+                    status was <br /> current at time of recording) </th>
+                  <th>Determination Method</th>
+                  <th>Determination Date</th>
+                  <th>Recorded Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Pregnant</td>
+                  <td>AUG 26, 2017</td>
+                  <td>Diagnostic ultrasonography</td>
+                  <td>OCT 1, 2017</td>
+                  <td>OCT 1, 2017 10:35</td>
+                </tr>
+                <tr>
+                  <td colspan="20">
+                    <list styleCode="none">
+                      <item>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Estimated Date of Delivery</th>
+                              <th>EDD</th>
+                              <th>EDD Determination Date</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Delivery date estimated from
+                                ovulation date</td>
+                              <td>MAY 22, 2017</td>
+                              <td>OCT 1, 2017 10:15</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Estimated Gestational Age of
+                                Pregnancy</th>
+                              <th>Days</th>
+                              <th>Determination Date</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Gestational age Estimated from
+                                selected delivery date</td>
+                              <td>143 d</td>
+                              <td>OCT 1, 2017 10:15</td>
+                            </tr>
+                            <tr>
+                              <td colspan="20">
+                                <list styleCode="none">
+                                  <item>
+                                    <table>
+                                      <thead>
+                                        <tr>
+                                          <th>Reference to
+                                            selected
+                                            delivery
+                                            date</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td>
+                                            <linkHtml
+                                              href="#id_f3dfc576-2329-4f71-af3f-d500cab1146b_ref">Link
+                                              to
+                                              referenced
+                                              entry</linkHtml>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </item>
+                                </list>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Pregnancy Outcome</th>
+                              <th>Birth Order</th>
+                              <th>Time</th>
+                              <th>Method of Delivery</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Stillbirth (finding)</td>
+                              <td>1</td>
+                              <td>JAN 5, 2020 08:50</td>
+                              <td>Breech delivery (procedure)</td>
+                            </tr>
+                            <tr>
+                              <td>Term birth of newborn (finding)</td>
+                              <td>2</td>
+                              <td>JAN 5, 2020 10:05</td>
+                              <td>Breech delivery (procedure)</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </item>
+                    </list>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table>
+              <thead>
+                <tr>
+                  <th>Last menstrual period start date</th>
+                  <th>Observation Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>AUG 1, 2017</td>
+                  <td>JAN 5, 2020 10:15</td>
+                </tr>
+              </tbody>
+            </table>
+            <table>
+              <thead>
+                <tr>
+                  <th>Postpartum Status</th>
+                  <th>Observation date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Mid postpartum state (finding)</td>
+                  <td>JAN 5, 2020 10:15</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <!-- Pregnancy Observation (SUPPLEMENTAL PREGNANCY) -->
+          <entry typeCode="DRIV">
+            <!-- To assert a pregnancy status of:
+           * pregnant: set value to 77386006 |Pregnant (finding)
+           * possibly pregnant: set value to 102874004 |Possible pregnancy (finding)
+           * not pregnant: set value to 60001007 |Not pregnant (finding)
+           * unknown: set nullFlavor="UNK" and value/@nullFlavor to "UNK"
+         Use the effectiveTime to indicate the date range over which the patient was pregnant/possibly
+            pregnant/not pregnant/unknown. -->
+            <observation classCode="OBS" moodCode="EVN">
+              <!-- [C-CDA R1] Pregnancy Observation -->
+              <templateId root="2.16.840.1.113883.10.20.15.3.8" />
+              <!-- [C-CDA PREG] Pregnancy Observation (SUPPLEMENTAL PREGNANCY)-->
+              <templateId root="2.16.840.1.113883.10.20.22.4.293" extension="2020-04-01" />
+              <id root="bab77407-f76d-4a51-a2ed-980c8a59fe28" />
+              <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4" />
+              <statusCode code="completed" />
+              <!-- Use the effectiveTime to indicate the date range over which the patient
+                   was pregnant/possibly pregnant/not pregnant/unknown. -->
+              <effectiveTime>
+                <low value="20170826" />
+              </effectiveTime>
+              <!-- eICR Data element: Pregnancy status -->
+              <value xsi:type="CD" code="77386006" displayName="Pregnant"
+                codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" />
+              <!-- eICR Data element: Pregnancy status determination method -->
+              <methodCode code="16310003"
+                displayName="Diagnostic ultrasonography (procedure)"
+                codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" />
+              <performer>
+                <!-- Pregnancy Status Determination Date -->
+                <time value="20171001" />
+                <assignedEntity>
+                  <id nullFlavor="NA" />
+                </assignedEntity>
+              </performer>
+              <author>
+                <!-- eICR Data element: Pregnancy Status Recorded Date -->
+                <time value="201710011035" />
+                <assignedAuthor>
+                  <id nullFlavor="NA" />
+                </assignedAuthor>
+              </author>
+              <!-- Estimated Date of Delivery -->
+              <entryRelationship typeCode="REFR">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- [C-CDA PREG] Estimated Date of Delivery (SUPPLEMENTAL
+                  PREGNANCY) -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.297"
+                    extension="2020-04-01" />
+                  <id root="f3dfc576-2329-4f71-af3f-d500cab1146b" />
+                  <!-- If method of determination is known, it is included in the
+                  code chosen, if the method of determination is not known,
+                  use code 11778-8 - Delivery Date estimated (no method specified) -->
+                  <!-- eICR Data element: Estimated date of delivery (EDD) method -->
+                  <code code="11780-4" codeSystem="2.16.840.1.113883.6.1"
+                    displayName="Delivery date estimated from ovulation date"
+                    codeSystemName="LOINC" />
+                  <statusCode code="completed" />
+                  <!-- eICR Data element: EDD determination date -->
+                  <effectiveTime value="201710011015" />
+                  <!-- eICR Data element: Estimated date of delivery (EDD) -->
+                  <value xsi:type="TS" value="20170522" />
+                </observation>
+              </entryRelationship>
+              <!-- Estimated Gestational Age of Pregnancy -->
+              <entryRelationship typeCode="REFR">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- [C-CDA PREG] Estimated Gestational Age of Pregnancy  -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.280"
+                    extension="2020-04-01" />
+                  <id root="9ae62b42-0e67-4ddc-8ef7-909d03732292" />
+                  <code code="11887-7" codeSystem="2.16.840.1.113883.6.1"
+                    displayName="Gestational age Estimated from selected delivery date"
+                    codeSystemName="LOINC" />
+                  <statusCode code="completed" />
+                  <!-- eICR Data element: Estimated gestational age determination
+                  date -->
+                  <effectiveTime value="201710011015" />
+                  <!-- eICR Data element: Estimated gestational age of pregnancy
+                  in days -->
+                  <value xsi:type="PQ" unit="d" value="143" />
+                  <!-- The following entryRelationship only needs to be present if
+                  the code used  is 11887-7 | Gestational age Estimated from selected delivery date. The
+                  Entry Reference template points to the relevant Estimated Date of Delivery template-->
+                  <entryRelationship typeCode="REFR">
+                    <act classCode="ACT" moodCode="EVN">
+                      <!-- [C-CDA R2.0] Entry Reference -->
+                      <templateId root="2.16.840.1.113883.10.20.22.4.122" />
+                      <!-- This ID equals the ID of the relevant Estimated
+                      Date of Delivery template -->
+                      <id root="f3dfc576-2329-4f71-af3f-d500cab1146b" />
+                      <!-- The code is nulled to "NP" Not Present" -->
+                      <code nullFlavor="NP" />
+                      <statusCode code="completed" />
+                    </act>
+                  </entryRelationship>
+                </observation>
+              </entryRelationship>
+              <!-- Pregnancy Outcome -->
+              <entryRelationship typeCode="COMP">
+                <!-- The order born in the delivery, live born or fetal death (1st,
+                2nd, 3rd, 4th, 5th, 6th, 7th, etc.). 
+                All live births and fetal losses are included. If the pregnancy plurality is 1
+                then this value will also be 1. -->
+                <sequenceNumber value="1" />
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- [C-CDA PREG] Pregnancy Outcome -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.284"
+                    extension="2020-04-01" />
+                  <id root="6df3e951-e6f8-441d-a298-d9d6d3f405db" />
+                  <code code="63893-2" codeSystem="2.16.840.1.113883.6.1"
+                    displayName="Outcome of Pregnancy" codeSystemName="LOINC" />
+                  <statusCode code="completed" />
+                  <!-- eICR Data element: Pregnancy outcome date -->
+                  <effectiveTime value="202001050850" />
+                  <!-- eICR Data element: Pregnancy outcome -->
+                  <value xsi:type="CD" code="237364002"
+                    codeSystem="2.16.840.1.113883.6.96"
+                    displayName="Stillbirth (finding)"
+                    codeSystemName="SNOMED CT" />
+                </observation>
+              </entryRelationship>
+            </observation>
+          </entry>
+          <!-- Last Menstrual Period -->
+          <entry typeCode="DRIV">
+            <observation classCode="OBS" moodCode="EVN">
+              <!-- [COTPS R1D2] Last Menstrual Period (V2) -->
+              <templateId root="2.16.840.1.113883.10.20.30.3.34"
+                extension="2014-06-09" />
+              <id root="5ffea0ae-9ae5-4313-956a-30219b4a6afa" />
+              <code code="8665-2" codeSystem="2.16.840.1.113883.6.1"
+                codeSystemName="LOINC"
+                displayName="Last menstrual period start date" />
+              <statusCode code="completed" />
+              <!-- eICR Data element: Last menstrual period (LMP) -->
+              <effectiveTime value="202001051015" />
+              <value xsi:type="TS" value="20170801" />
+            </observation>
+          </entry>
+          <!-- Postpartum Status -->
+          <entry typeCode="DRIV">
+            <observation classCode="OBS" moodCode="EVN">
+              <!-- [C-CDA PREG] Postpartum Status -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.285"
+                extension="2020-04-01" />
+              <id root="9701b264-0f70-47f9-bfbf-aa4f9686cd3a" />
+              <code code="249197004" codeSystem="2.16.840.1.113883.6.96"
+                codeSystemName="SNOMED CT"
+                displayName="Maternal condition during puerperium (observable entity)" />
+              <statusCode code="completed" />
+              <effectiveTime value="202001051015" />
+              <!-- eICR Data element: Postpartum status -->
+              <value xsi:type="CD" code="42814007" codeSystem="2.16.840.1.113883.6.96"
+                codeSystemName="SNOMED CT"
+                displayName="Mid postpartum state (finding)" />
+            </observation>
+          </entry>
+        </section>

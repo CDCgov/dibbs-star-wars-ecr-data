@@ -1,7 +1,7 @@
 from lxml import etree
 from conftest import normalize_xml
 
-
+# TODO: All of these tests are broken now
 def test_patient_template(jinja_env, patient_data, xml_nsmap, base_path):
     """Test that our template generates the expected patient XML structure."""
     # load and render the template

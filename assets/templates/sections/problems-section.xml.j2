@@ -1,0 +1,93 @@
+{%- from "observations/problem.xml.j2" import render_problem %}
+        <section>
+          <!-- [C-CDA R1.1] Problem Section (entries optional)-->
+          <templateId root="2.16.840.1.113883.10.20.22.2.5" />
+          <!-- [C-CDA R2.1] Problem Section (entries optional) (V3) -->
+          <templateId extension="2015-08-01"
+            root="2.16.840.1.113883.10.20.22.2.5" />
+          <!-- [C-CDA R1.1] Problem Section (entries required) -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.5.1" />
+          <!-- [C-CDA R2.1] Problem Section (entries required) (V3) -->
+          <templateId extension="2015-08-01"
+            root="2.16.840.1.113883.10.20.22.2.5.1" />
+          <code code="11450-4" codeSystem="2.16.840.1.113883.6.1"
+            codeSystemName="LOINC" displayName="Problem List" />
+          <title>Problem List</title>
+          <text>
+            <table>
+              <thead>
+                <tr>
+                  <th>Concern</th>
+                  <th>Concern Status</th>
+                  <th>Date(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Problem</td>
+                  <td>active</td>
+                  <td>02/16/2025</td>
+                </tr>
+                <tr>
+                  <td>
+                    <list>
+                      <item>
+                        <paragraph>*** In the table below, row entries with values under RCTC
+                          columns triggered this Electronic Initial Case Report (eICR)</paragraph>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Problem Type</th>
+                              <th>Problem</th>
+                              <th>Date(s)</th>
+                              <th>Code</th>
+                              <th>Code System</th>
+                              <th>RCTC OID ***</th>
+                              <th>RCTC Version ***</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {%- for i in range(problems_obs_repetitions) %}
+                            {%- for problem in sections.problems.observations %}
+                            <tr>
+                              <td>{{ problem.displayName }}</td>
+                              <td>{{ problem.value.displayName }}</td>
+                              <td>02/16/2025</td>
+                              <td>{{ problem.value.code }}</td>
+                              <td>{{ problem.value.codeSystemName }}</td>
+                              <td />
+                              <td />
+                            </tr>
+                            {%- endfor %}
+                            {%- endfor %}
+                          </tbody>
+                        </table>
+                      </item>
+                    </list>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          {%- for i in range(problems_obs_repetitions) %}
+          {%- for problem in sections.problems.observations %}
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <!-- [C-CDA 1.1] Problem Concern Act -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.3" />
+              <!-- [C-CDA 2.1] Problem Concern Act (V3) -->
+              <templateId extension="2015-08-01" root="2.16.840.1.113883.10.20.22.4.3" />
+              <id root="a1c0c380-eacc-4b40-9207-85164185558d" />
+              <code code="CONC" codeSystem="2.16.840.1.113883.5.6" displayName="Concern" />
+              <statusCode code="active" />
+              <effectiveTime>
+                <low value="20250216" />
+              </effectiveTime>
+              <entryRelationship typeCode="SUBJ">
+              {{- render_problem(problem) | indent(16, True) }}
+              </entryRelationship>
+            </act>
+          </entry>
+          {%- endfor %}
+          {%- endfor %}
+        </section>

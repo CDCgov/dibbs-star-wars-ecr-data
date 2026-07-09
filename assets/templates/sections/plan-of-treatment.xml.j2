@@ -1,0 +1,75 @@
+{%- from "observations/planned.xml.j2" import render_planned_obs %}
+{%- from "activities/medication-activity.xml.j2" import render_medication_activity %}
+{%- from "encounters/planned.xml.j2" import render_planned_encounter %}
+        <section>
+          <!-- [C-CDA R1.1] Plan of Care Section new -->
+          <templateId root="2.16.840.1.113883.10.20.22.2.22.1" />
+          <templateId extension="2014-06-09"
+            root="2.16.840.1.113883.10.20.22.2.22.1" />
+          <code code="18776-5" codeSystem="2.16.840.1.113883.6.1"
+            codeSystemName="LOINC" displayName="Plan of Treatment" />
+          <title>Plan of Treatment</title>
+          <text>
+            <paragraph>*** In the table below, row entries with values under RCTC columns triggered
+              this Electronic Initial Case Report (eICR)</paragraph>
+            <table>
+              <thead>
+                <tr>
+                  <th>Lab Test Order</th>
+                  <th>Code</th>
+                  <th>CodeSystem</th>
+                  <th>RCTC OID ***</th>
+                  <th>RCTC Version ***</th>
+                  <th>Ordered Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {%- for i in range(plan_of_treatment_repetitions) %}
+                {%- for entry in sections.plan_of_treatment.entries %}
+                {%- if entry.type == "observations/planned" %}
+                <tr>
+                  <td>{{ entry.displayName }}</td>
+                  <td>{{ entry.code }}</td>
+                  <td>{{ entry.codeSystemName }}</td>
+                  <td/>
+                  <td/>
+                  <td>02/17/2025</td>
+                </tr>
+                {%- endif %}
+                {%- endfor %}
+                {%- endfor %}
+              </tbody>
+            </table>
+
+            <paragraph>Medications</paragraph>
+            <list>
+              {%- for entry in sections.plan_of_treatment.entries %}
+              {%- if entry.type == "activities/medication-activity" %}
+              <item>{{ entry.manufacturedMaterial.originalText }}</item>
+              {%- endif %}
+              {%- endfor %}
+            </list>
+
+            <paragraph>Follow-up</paragraph>
+            <list>
+              {%- for entry in sections.plan_of_treatment.entries %}
+              {%- if entry.type == "encounters/planned" %}
+              <item>{{ entry.text }}</item>
+              {%- endif %}
+              {%- endfor %}
+            </list>
+          </text>
+          {%- for i in range(plan_of_treatment_repetitions) %}
+          {%- for entry in sections.plan_of_treatment.entries %}
+          <entry typeCode="DRIV">
+          {%- if entry.type == "observations/planned" -%}
+          {{ render_planned_obs(entry) | indent(12, True) }}
+          {%- elif entry.type == "activities/medication-activity" -%}
+          {{ render_medication_activity(entry) | indent(12, True) }}
+          {%- elif entry.type == "encounters/planned" -%}
+          {{ render_planned_encounter(entry) | indent(12, True) }}
+          {%- endif %}
+          </entry>
+          {%- endfor %}
+          {%- endfor %}
+        </section>
